@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Easy Send</string>
+    <string name="lorem_ipsum_5_words">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut.</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoieW9oYW5lc2dyZSIsImEiOiJjazQxcTM0am4wM3M5M21vYjlobXZ2OWN0In0.hxBaTdK-D8a-4oQS2ENS5Q</string>
+</resources>
