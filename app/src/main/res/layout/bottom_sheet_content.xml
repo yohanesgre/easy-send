@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:clipToPadding="false"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/item_timeline"/>
+            <include android:id="@+id/layout_detil_order"
+                layout="@layout/bottom_sheet_content_detil_order"/>
+            <com.ncorti.slidetoact.SlideToActView
+                android:id="@+id/example_gray_on_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                app:area_margin="4dp"
+                app:border_radius="2dp"
+                app:inner_color="@android:color/darker_gray"
+                app:outer_color="@android:color/holo_green_dark"
+                app:slider_height="50dp"
+                app:slider_locked="false"
+                app:text="Sampai di Lokasi"
+                app:text_size="12sp"/>
+            <View
+                android:id="@+id/blank_space"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DeliveryActivity"/>
+        <activity android:name=".UploadBiayaTambahanActivity"/>
+        <activity android:name=".UploadSuratJalanActivity"/>
     </application>
 
 </manifest>
