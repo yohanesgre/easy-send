@@ -1,4 +1,4 @@
-package com.example.easysend.adapter
+package com.example.easysend.features.delivery.adapter
 
 import android.os.Build
 import android.view.LayoutInflater

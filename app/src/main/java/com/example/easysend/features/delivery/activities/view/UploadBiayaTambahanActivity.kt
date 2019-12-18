@@ -1,17 +1,20 @@
-package com.example.easysend
+package com.example.easysend.features.delivery.activities.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.easysend.databinding.ActivityUploadSuratJalanBinding
+import com.example.easysend.R
+import com.example.easysend.databinding.ActivityUploadBiayaTambahanBinding
 
-class UploadSuratJalanActivity:AppCompatActivity() {
+class UploadBiayaTambahanActivity:AppCompatActivity() {
 
-    private lateinit var binding:ActivityUploadSuratJalanBinding
+    private lateinit var binding:ActivityUploadBiayaTambahanBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_upload_surat_jalan)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_upload_biaya_tambahan
+        )
         binding.appBarLayout.toolbar.title = "Upload Biaya Tambahan"
         setSupportActionBar(binding.appBarLayout.toolbar)
         supportActionBar!!.setDisplayShowHomeEnabled(true)

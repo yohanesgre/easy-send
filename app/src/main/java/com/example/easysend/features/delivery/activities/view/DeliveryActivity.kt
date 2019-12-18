@@ -1,4 +1,4 @@
-package com.example.easysend
+package com.example.easysend.features.delivery.activities.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easysend.adapter.TimelineAdapter
+import com.example.easysend.R
 import com.example.easysend.databinding.ActivityDeliveryBinding
 import com.example.easysend.extentions.dpToPx
 import com.example.easysend.extentions.getColorCompat
+import com.example.easysend.features.delivery.adapter.TimelineAdapter
 import com.github.vipulasri.timelineview.TimelineView
 import com.github.vipulasri.timelineview.sample.model.OrderStatus
 import com.github.vipulasri.timelineview.sample.model.Orientation
@@ -31,7 +32,6 @@ import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute
@@ -41,7 +41,7 @@ import retrofit2.Response
 import timber.log.Timber
 import java.lang.ref.WeakReference
 
-class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener {
+class DeliveryActivity : AppCompatActivity(), PermissionsListener {
 
     private val listItemTimeline = ArrayList<TimeLineModel>()
     private lateinit var binding: ActivityDeliveryBinding
@@ -54,7 +54,10 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsLis
     private lateinit var permissionManager: PermissionsManager
     private var locationEngine: LocationEngine? = null
     private var locationComponent: LocationComponent? = null
-    private val callback = LocationListeningCallback(this)
+    private val callback =
+        LocationListeningCallback(
+            this
+        )
 
     var originLocation: Location? = null
     var navigationMapRoute: NavigationMapRoute? = null
@@ -68,10 +71,18 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsLis
             this,
             "pk.eyJ1IjoieW9oYW5lc2dyZSIsImEiOiJjazQxcTM0am4wM3M5M21vYjlobXZ2OWN0In0.hxBaTdK-D8a-4oQS2ENS5Q"
         )
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_delivery)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_delivery
+        )
         mapView = binding.mapView
         mapView?.onCreate(savedInstanceState)
-        mapView?.getMapAsync(this)
+        mapView?.getMapAsync{map->
+            mapboxMap = map
+            mapboxMap.setStyle(Style.MAPBOX_STREETS
+            ) {
+                enableLocation(it)
+            }
+        }
         tlAttributes = TimelineAttributes(
             markerSize = dpToPx(20f),
             markerColor = getColorCompat(R.color.colorGrey500),
@@ -91,10 +102,10 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsLis
         setDataListItems()
         initRecyclerView()
         binding.apply {
-            bottomSheetLayout.bottomSheetContent.layoutDetilOrder.btnSuratJalanUpload.setOnClickListener {
+            bottomSheetLayout.bottomSheetContent.btnSuratJalanUpload.setOnClickListener {
                 startActivity(Intent(this@DeliveryActivity, UploadSuratJalanActivity::class.java))
             }
-            bottomSheetLayout.bottomSheetContent.layoutDetilOrder.btnBiayaTambahanUpload.setOnClickListener {
+            bottomSheetLayout.bottomSheetContent.btnBiayaTambahanUpload.setOnClickListener {
                 startActivity(
                     Intent(
                         this@DeliveryActivity,
@@ -168,7 +179,7 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsLis
 
     private fun initRecyclerView() {
         initAdapter()
-        binding.bottomSheetLayout.bottomSheetContent.recyclerView.addOnScrollListener(object :
+        binding.bottomSheetLayout.bottomSheetContent.timeline.recyclerView.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             @SuppressLint("LongLogTag")
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -179,18 +190,9 @@ class DeliveryActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsLis
     }
 
     private fun initAdapter() {
-        binding.bottomSheetLayout.bottomSheetContent.recyclerView.apply {
+        binding.bottomSheetLayout.bottomSheetContent.timeline.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@DeliveryActivity, RecyclerView.VERTICAL, false)
             adapter = TimelineAdapter(listItemTimeline, tlAttributes)
-        }
-    }
-
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        this@DeliveryActivity.mapboxMap = mapboxMap
-
-        mapboxMap.setStyle(Style.MAPBOX_STREETS
-        ) {
-            enableLocation(it)
         }
     }
 

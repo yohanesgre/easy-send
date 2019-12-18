@@ -141,47 +141,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <!-- Nota Biaya Tambahan -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="Nota Biaya Tambahan" />
-                <TextView
-                    android:id="@+id/btn_biaya_tambahan_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_border_all_10_round_blue"
-                    android:paddingHorizontal="3dp"
-                    android:paddingVertical="2dp"
-                    android:text="Upload" />
-            </LinearLayout>
-            <!-- Surat Jalan -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="Surat Jalan" />
-                <TextView
-                    android:id="@+id/btn_surat_jalan_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_border_all_10_round_blue"
-                    android:paddingHorizontal="3dp"
-                    android:paddingVertical="2dp"
-                    android:text="Upload" />
-            </LinearLayout>
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
