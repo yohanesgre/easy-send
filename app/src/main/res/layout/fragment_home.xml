@@ -91,7 +91,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
-                            tools:text="1000"
+                            android:text="1000"
                             android:gravity="right"
                             android:layout_gravity="center_vertical|right"/>
                     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -130,7 +130,7 @@
                             android:id="@+id/tv_output_nama_driver"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="Sunarya Bulipsi Susanto"
+                            android:text="Sunarya Bulipsi Susanto"
                             android:textColor="@color/colorPrimary"
                             android:textSize="22sp"/>
 
@@ -149,7 +149,7 @@
                             android:id="@+id/tv_output_nopol"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="L 8789 PW"
+                            android:text="L 8789 PW"
                             android:textColor="@color/colorPrimary"
                             android:textSize="22sp"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easysend.R
 import com.example.easysend.databinding.FragmentDeliveryBinding
+import com.example.easysend.di.Injectable
 import com.example.easysend.extentions.dpToPx
 import com.example.easysend.extentions.getColorCompat
 import com.example.easysend.features.delivery.adapter.TimelineAdapter
@@ -42,10 +44,9 @@ import retrofit2.Response
 import timber.log.Timber
 import java.lang.ref.WeakReference
 
-class DeliveryFragment : Fragment(), PermissionsListener {
+class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
 
     private val listItemTimeline = ArrayList<TimeLineModel>()
-    private val listItemTimelineEmpty = ArrayList<TimeLineModel>()
     private var buttonState = 0
     private lateinit var timelineAdapter: TimelineAdapter
     private lateinit var binding: FragmentDeliveryBinding
@@ -112,15 +113,22 @@ class DeliveryFragment : Fragment(), PermissionsListener {
         initRecyclerView()
         binding.apply {
             bottomSheetLayout.bottomSheetContent.btnSuratJalanUpload.setOnClickListener {
-                /*startActivity(Intent(requireContext(), UploadSuratJalanActivity::class.java))*/
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToUploadSuratJalanFragment())
             }
             bottomSheetLayout.bottomSheetContent.btnBiayaTambahanUpload.setOnClickListener {
-                /*startActivity(
-                    Intent(
-                       requireContext(),
-                        UploadBiayaTambahanActivity::class.java
-                    )
-                )*/
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToUploadBiayaTambahanFragment())
+            }
+            bottomSheetLayout.bottomSheetContent.btnDetilOrder.setOnClickListener {
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliveryDetilFragment())
+            }
+            bottomSheetLayout.bottomSheetContent.btnBiayaTambahanLihat.setOnClickListener {
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToLihatBiayaTambahanFragment())
+            }
+            bottomSheetLayout.bottomSheetContent.btnSuratJalanLihat.setOnClickListener {
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToLihatSuratJalanFragment())
+            }
+            bottomSheetLayout.bottomSheetContent.layoutSampaiGarasi.btnSampaiGarasi.setOnClickListener {
+                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
             }
         }
         tlAttributes.orientation = Orientation.VERTICAL
@@ -128,13 +136,13 @@ class DeliveryFragment : Fragment(), PermissionsListener {
     }
 
     private fun setDataEmptyItemList(){
-        listItemTimelineEmpty.add(TimeLineModel("Start dari Garasi", "2019-12-12 07:00", OrderStatus.COMPLETED))
-        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Load", "", OrderStatus.ACTIVE))
-        listItemTimelineEmpty.add(TimeLineModel("Selesai Loading", "", OrderStatus.INACTIVE))
-        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.INACTIVE))
-        listItemTimelineEmpty.add(TimeLineModel("Selesai Unload 1", "", OrderStatus.INACTIVE))
-        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Unload 2", "", OrderStatus.INACTIVE))
-        listItemTimelineEmpty.add(TimeLineModel("Selesai Unload 2", "", OrderStatus.INACTIVE))
+        listItemTimeline.add(TimeLineModel("Start dari Garasi", "2019-12-12 07:00", OrderStatus.COMPLETED))
+        listItemTimeline.add(TimeLineModel("Sampai Lokasi Load", "", OrderStatus.ACTIVE))
+        listItemTimeline.add(TimeLineModel("Selesai Loading", "", OrderStatus.INACTIVE))
+        listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.INACTIVE))
+        listItemTimeline.add(TimeLineModel("Selesai Unload 1", "", OrderStatus.INACTIVE))
+        listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 2", "", OrderStatus.INACTIVE))
+        listItemTimeline.add(TimeLineModel("Selesai Unload 2", "", OrderStatus.INACTIVE))
     }
 
     private fun initRecyclerView() {
@@ -150,16 +158,12 @@ class DeliveryFragment : Fragment(), PermissionsListener {
     }
 
     private fun initAdapter() {
-        initButtonTimeline()
         timelineAdapter = TimelineAdapter(listItemTimeline, tlAttributes)
         binding.bottomSheetLayout.bottomSheetContent.timeline.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = timelineAdapter
         }
-        binding.bottomSheetLayout.bottomSheetContent.timelineEmpty.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = TimelineAdapter(listItemTimelineEmpty, tlAttributes)
-        }
+        initButtonTimeline()
     }
 
     private fun initButtonTimeline(){
@@ -167,58 +171,57 @@ class DeliveryFragment : Fragment(), PermissionsListener {
             when(buttonState){
                 0 ->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Load"
-                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Load", "2019-12-12 09:30", OrderStatus.COMPLETED))
+                    listItemTimeline[1] = TimeLineModel("Sampai Lokasi Load", "2019-12-12 09:30", OrderStatus.COMPLETED)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                     println("Button State: $buttonState")
                 }
                 1 ->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Loading"
-                    listItemTimeline.add(TimeLineModel("Selesai Loading", "", OrderStatus.ACTIVE))
+                    listItemTimeline[2]= TimeLineModel("Selesai Loading", "", OrderStatus.ACTIVE)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
                 2 ->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Unload 1"
-                    listItemTimeline.removeAt(listItemTimeline.size - 1)
-                    listItemTimeline.add(TimeLineModel("Selesai Loading", "2019-12-12 12:00", OrderStatus.COMPLETED))
-                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.ACTIVE))
+                    listItemTimeline[2]= TimeLineModel("Selesai Loading", "2019-12-12 12:00", OrderStatus.COMPLETED)
+                    listItemTimeline[3]= TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.ACTIVE)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
                 3->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Unloading 1"
-                    listItemTimeline.removeAt(listItemTimeline.size - 1)
-                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 1", "2019-12-12 19:00", OrderStatus.COMPLETED))
-                    listItemTimeline.add(TimeLineModel("Selesai Unloading 1", "", OrderStatus.ACTIVE))
+                    listItemTimeline[3]= TimeLineModel("Sampai Lokasi Unload 1", "2019-12-12 19:00", OrderStatus.COMPLETED)
+                    listItemTimeline[4]= TimeLineModel("Selesai Unloading 1", "", OrderStatus.ACTIVE)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
                 4->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Unload 2"
-                    listItemTimeline.removeAt(listItemTimeline.size - 1)
-                    listItemTimeline.add(TimeLineModel("Selesai Unloading 1", "2019-12-12 20:00", OrderStatus.COMPLETED))
-                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unloading 2", "", OrderStatus.ACTIVE))
+                    listItemTimeline[4]= TimeLineModel("Selesai Unloading 1", "2019-12-12 20:00", OrderStatus.COMPLETED)
+                    listItemTimeline[5]= TimeLineModel("Sampai Lokasi Unloading 2", "", OrderStatus.ACTIVE)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
                 5->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Unloading 2"
-                    listItemTimeline.removeAt(listItemTimeline.size - 1)
-                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unloading 2", "2019-12-12 21:00", OrderStatus.COMPLETED))
-                    listItemTimeline.add(TimeLineModel("Selesai Unloading 2", "", OrderStatus.ACTIVE))
+                    listItemTimeline[5]= TimeLineModel("Sampai Lokasi Unloading 2", "2019-12-12 21:00", OrderStatus.COMPLETED)
+                    listItemTimeline[6]= TimeLineModel("Selesai Unloading 2", "", OrderStatus.ACTIVE)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
                 6->{
                     binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Menuju Garasi"
-                    listItemTimeline.removeAt(listItemTimeline.size - 1)
-                    listItemTimeline.add(TimeLineModel("Selesai Unloading 2", "2019-12-12 21:30", OrderStatus.COMPLETED))
+                    listItemTimeline[6]= TimeLineModel("Selesai Unloading 2", "2019-12-12 21:30", OrderStatus.COMPLETED)
                     timelineAdapter.updateList(listItemTimeline)
                     buttonState++
                 }
+                7->{
+                    binding.bottomSheetLayout.bottomSheetContent.timeline.recyclerView.visibility = View.GONE
+                    binding.bottomSheetLayout.bottomSheetContent.layoutSampaiGarasi.layoutSampaiGarasi.visibility = View.VISIBLE
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.visibility = View.GONE
+                }
             }
-
         }
     }
 

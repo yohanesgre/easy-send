@@ -10,6 +10,21 @@
         <action
             android:id="@+id/action_deliveryFragment_to_deliveryDetilFragment"
             app:destination="@id/deliveryDetilFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_uploadSuratJalanFragment"
+            app:destination="@id/uploadSuratJalanFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_uploadBiayaTambahanFragment"
+            app:destination="@id/uploadBiayaTambahanFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_deliverySelesaiFragment"
+            app:destination="@id/deliverySelesaiFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_lihatBiayaTambahanFragment"
+            app:destination="@id/lihatBiayaTambahanFragment" />
+        <action
+            android:id="@+id/action_deliveryFragment_to_lihatSuratJalanFragment"
+            app:destination="@id/lihatSuratJalanFragment" />
     </fragment>
     <fragment
         android:id="@+id/deliveryDetilFragment"
@@ -19,4 +34,24 @@
             android:id="@+id/action_deliveryDetilFragment_to_deliveryFragment"
             app:destination="@id/deliveryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/uploadBiayaTambahanFragment"
+        android:name="com.example.easysend.features.delivery.view.UploadBiayaTambahanFragment"
+        android:label="UploadBiayaTambahanFragment" />
+    <fragment
+        android:id="@+id/uploadSuratJalanFragment"
+        android:name="com.example.easysend.features.delivery.view.UploadSuratJalanFragment"
+        android:label="UploadSuratJalanFragment" />
+    <fragment
+        android:id="@+id/deliverySelesaiFragment"
+        android:name="com.example.easysend.features.delivery.view.DeliverySelesaiFragment"
+        android:label="DeliverySelesaiFragment" />
+    <fragment
+        android:id="@+id/lihatBiayaTambahanFragment"
+        android:name="com.example.easysend.features.delivery.view.LihatBiayaTambahanFragment"
+        android:label="LihatBiayaTambahanFragment" />
+    <fragment
+        android:id="@+id/lihatSuratJalanFragment"
+        android:name="com.example.easysend.features.delivery.view.LihatSuratJalanFragment"
+        android:label="LihatSuratJalanFragment" />
 </navigation>

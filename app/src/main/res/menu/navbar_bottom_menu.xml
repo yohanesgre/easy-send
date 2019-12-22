@@ -4,12 +4,12 @@
             android:id="@+id/fragment_home"
             android:title="Home"/>
     <item
-            android:id="@+id/fragment_bookings"
-            android:title="Bookings"/>
+            android:id="@+id/fragment_myorder"
+            android:title="Order Saya"/>
     <item
-            android:id="@+id/fragment_points"
-            android:title="Points"/>
+            android:id="@+id/fragment_finance"
+            android:title="Financial"/>
     <item
-            android:id="@+id/fragment_profile"
-            android:title="Profile"/>
+            android:id="@+id/fragment_akun_saya"
+            android:title="Akun Saya"/>
 </menu>

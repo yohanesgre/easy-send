@@ -30,8 +30,8 @@
                 android:layout_height="wrap_content">
                 <include layout="@layout/layout_timeline"
                     android:id="@+id/timeline"/>
-                <include layout="@layout/layout_timeline_empty"
-                    android:id="@+id/timeline_empty"/>
+                <include layout="@layout/bottom_sheet_content_sampai_garasi"
+                    android:id="@+id/layout_sampai_garasi" />
             </FrameLayout>
             <Button
                 android:id="@+id/btn_timeline"
@@ -68,9 +68,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_border_all_10_round_blue"
+                    android:layout_marginEnd="10dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
-                    android:text="Upload" />
+                    android:text="Upload"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/btn_biaya_tambahan_lihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_all_10_round_green"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="Lihat"
+                    android:textColor="@color/white"/>
             </LinearLayout>
             <!-- Surat Jalan -->
             <LinearLayout
@@ -89,9 +100,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_border_all_10_round_blue"
+                    android:layout_marginEnd="10dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
                     android:text="Upload" />
+                <TextView
+                    android:id="@+id/btn_surat_jalan_lihat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_all_10_round_green"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="Lihat"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <View

@@ -17,6 +17,74 @@ import com.github.vipulasri.timelineview.sample.model.TimeLineModel
 import com.github.vipulasri.timelineview.sample.model.TimelineAttributes
 import com.github.vipulasri.timelineview.sample.utils.VectorDrawableUtils
 
+/*
+class TimelineAdapter(private var tlAttributes: TimelineAttributes) : ListAdapter<TimeLineModel, TimelineAdapter.ViewHolder>(TimeLineModelNewDiffCallback()){
+    override fun getItemViewType(position: Int): Int {
+        return TimelineView.getTimeLineViewType(position, itemCount)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(ItemTimelineBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewType)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val timeLineModel = getItem(position)
+        holder.bind(timeLineModel)
+    }
+
+    inner class ViewHolder(val binding: ItemTimelineBinding, viewType: Int) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(timeLineModel:TimeLineModel){
+            binding.apply{
+                when {
+                    timeLineModel.status == OrderStatus.INACTIVE -> {
+                        timeline.marker = VectorDrawableUtils.getDrawable(itemView.context, R.drawable.ic_marker_inactive, tlAttributes.markerColor)
+                    }
+                    timeLineModel.status == OrderStatus.ACTIVE -> {
+                        timeline.marker = VectorDrawableUtils.getDrawable(itemView.context, R.drawable.ic_marker_active,  tlAttributes.markerColor)
+                    }
+                    else -> {
+                        timeline.setMarker(ContextCompat.getDrawable(itemView.context, R.drawable.ic_marker), tlAttributes.markerColor)
+                    }
+                }
+                if (timeLineModel.date.isNotEmpty()) {
+                    textTimelineDate.setVisible()
+                    textTimelineDate.text = timeLineModel.date.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
+                } else
+                    textTimelineDate.setGone()
+                textTimelineTitle.text = timeLineModel.message
+                executePendingBindings()
+            }
+        }
+        init{
+            binding.timeline.initLine(viewType)
+            binding.timeline.markerSize = tlAttributes.markerSize
+            binding.timeline.setMarkerColor(tlAttributes.markerColor)
+            binding.timeline.isMarkerInCenter = tlAttributes.markerInCenter
+            binding.timeline.markerPaddingLeft = tlAttributes.markerLeftPadding
+            binding.timeline.markerPaddingTop = tlAttributes.markerTopPadding
+            binding.timeline.markerPaddingRight = tlAttributes.markerRightPadding
+            binding.timeline.markerPaddingBottom = tlAttributes.markerBottomPadding
+            binding.timeline.linePadding = tlAttributes.linePadding
+            binding.timeline.lineWidth = tlAttributes.lineWidth
+            binding.timeline.setStartLineColor(tlAttributes.startLineColor, viewType)
+            binding.timeline.setEndLineColor(tlAttributes.endLineColor, viewType)
+            binding.timeline.lineStyle = tlAttributes.lineStyle
+            binding.timeline.lineStyleDashLength = tlAttributes.lineDashWidth
+            binding.timeline.lineStyleDashGap = tlAttributes.lineDashGap
+        }
+    }
+}
+private class TimeLineModelNewDiffCallback : DiffUtil.ItemCallback<TimeLineModel>() {
+    override fun areItemsTheSame(oldItem: TimeLineModel, newItem: TimeLineModel): Boolean {
+        return oldItem == newItem
+    }
+
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: TimeLineModel, newItem: TimeLineModel): Boolean {
+        return oldItem == newItem
+    }
+}*/
+
 class TimelineAdapter(private var listItem: List<TimeLineModel>,
                       private var tlAttributes: TimelineAttributes) : RecyclerView.Adapter<TimelineAdapter.ViewHolder>(){
     override fun getItemViewType(position: Int): Int {
@@ -37,30 +105,32 @@ class TimelineAdapter(private var listItem: List<TimeLineModel>,
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val timeLineModel = listItem[position]
-        when {
-            timeLineModel.status == OrderStatus.INACTIVE -> {
-                holder.timeline.marker = VectorDrawableUtils.getDrawable(holder.itemView.context, R.drawable.ic_marker_inactive, tlAttributes.markerColor)
-            }
-            timeLineModel.status == OrderStatus.ACTIVE -> {
-                holder.timeline.marker = VectorDrawableUtils.getDrawable(holder.itemView.context, R.drawable.ic_marker_active,  tlAttributes.markerColor)
-            }
-            else -> {
-                holder.timeline.setMarker(ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_marker), tlAttributes.markerColor)
-            }
-        }
-        if (timeLineModel.date.isNotEmpty()) {
-            holder.date.setVisible()
-            holder.date.text = timeLineModel.date.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
-        } else
-            holder.date.setGone()
-        holder.message.text = timeLineModel.message
+        holder.bind(timeLineModel)
     }
 
     inner class ViewHolder(binding: ItemTimelineBinding, viewType: Int) : RecyclerView.ViewHolder(binding.root) {
         val date = binding.textTimelineDate
         val message = binding.textTimelineTitle
         val timeline = binding.timeline
-
+        fun bind(timeLineModel:TimeLineModel){
+            when {
+                timeLineModel.status == OrderStatus.INACTIVE -> {
+                    timeline.marker = VectorDrawableUtils.getDrawable(itemView.context, R.drawable.ic_marker_inactive, tlAttributes.markerColor)
+                }
+                timeLineModel.status == OrderStatus.ACTIVE -> {
+                    timeline.marker = VectorDrawableUtils.getDrawable(itemView.context, R.drawable.ic_marker_active,  tlAttributes.markerColor)
+                }
+                else -> {
+                    timeline.setMarker(ContextCompat.getDrawable(itemView.context, R.drawable.ic_marker), tlAttributes.markerColor)
+                }
+            }
+            if (timeLineModel.date.isNotEmpty()) {
+                date.setVisible()
+                date.text = timeLineModel.date.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
+            } else
+                date.setGone()
+            message.text = timeLineModel.message
+        }
         init {
             timeline.initLine(viewType)
             timeline.markerSize = tlAttributes.markerSize

@@ -37,17 +37,19 @@ class HomeFragment : Fragment(), Injectable {
         val layoutPointParam = binding.layoutPointInfo.layoutParams
         layoutPointParam.height = binding.layoutRatingStar.layoutParams.height
         binding.layoutPointInfo.layoutParams = layoutPointParam
-        binding.tvLblEditProfile.setOnClickListener {
-            binding.layoutEmptyPesanan.visibility = View.GONE
-            binding.layoutPesanan.visibility = View.VISIBLE
-        }
         val adapterRating = RatingAdapter()
-        adapterRating.submitList(listOf(1,2,3))
+        adapterRating.submitList(listOf(1,2,3,4,5))
         binding.rvRating.apply {
             adapter = adapterRating
             binding.rvRating.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
         binding.ivEmptyOrder.setOnClickListener {
+            binding.layoutEmptyPesanan.visibility = View.GONE
+            binding.layoutPesanan.visibility = View.VISIBLE
+        }
+        binding.btnMulai.setOnClickListener {
+            binding.layoutEmptyPesanan.visibility = View.VISIBLE
+            binding.layoutPesanan.visibility = View.GONE
             startActivity(Intent(requireContext(), DeliveryActivity::class.java))
         }
     }

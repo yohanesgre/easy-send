@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.easysend.databinding.FragmentDeliveryDetilBinding
 import com.example.easysend.di.Injectable
 
@@ -36,7 +37,7 @@ class DeliveryDetilFragment : Fragment(), Injectable {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         //binding.toolbar.subtitle = "${args.cariKota}, ${args.cariTanggal}"
         requireActivity().onBackPressedDispatcher.addCallback(this@DeliveryDetilFragment) {
-
+            binding.root.findNavController().popBackStack()
         }
     }
 

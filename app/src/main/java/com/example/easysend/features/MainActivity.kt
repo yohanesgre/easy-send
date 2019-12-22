@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.example.easysend.R
 import com.example.easysend.databinding.ActivityMainBinding
 import com.example.easysend.features.home.view.HomeFragment
+import com.example.easysend.features.komisi.view.KomisiFragment
+import com.example.easysend.features.myorder.view.MyOrderFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -58,6 +60,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
                 lastFragmentTag = itemId
                 HomeFragment()
             }
+            R.id.fragment_myorder->{
+                lastFragmentTag = itemId
+                MyOrderFragment()
+            }
+            R.id.fragment_finance->{
+                lastFragmentTag = itemId
+                KomisiFragment()
+            }
             else -> {
                 null
             }
@@ -67,7 +77,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
             fragment != null -> {
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.containter, fragment, tag)
+                    .replace(R.id.containter, fragment as Fragment, tag)
                     .commit()
             }
             else -> {
