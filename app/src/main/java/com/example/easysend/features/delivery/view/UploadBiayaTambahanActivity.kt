@@ -1,4 +1,4 @@
-package com.example.easysend.features.delivery.activities.view
+package com.example.easysend.features.delivery.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ class UploadBiayaTambahanActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,
-            R.layout.activity_upload_biaya_tambahan
+            R.layout.fragment_delivery_upload_biaya_tambahan
         )
         binding.appBarLayout.toolbar.title = "Upload Biaya Tambahan"
         setSupportActionBar(binding.appBarLayout.toolbar)

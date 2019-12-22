@@ -17,7 +17,7 @@ import com.github.vipulasri.timelineview.sample.model.TimeLineModel
 import com.github.vipulasri.timelineview.sample.model.TimelineAttributes
 import com.github.vipulasri.timelineview.sample.utils.VectorDrawableUtils
 
-class TimelineAdapter(private val listItem: List<TimeLineModel>,
+class TimelineAdapter(private var listItem: List<TimeLineModel>,
                       private var tlAttributes: TimelineAttributes) : RecyclerView.Adapter<TimelineAdapter.ViewHolder>(){
     override fun getItemViewType(position: Int): Int {
         return TimelineView.getTimeLineViewType(position, itemCount)
@@ -29,11 +29,14 @@ class TimelineAdapter(private val listItem: List<TimeLineModel>,
 
     override fun getItemCount() = listItem.size
 
+    fun updateList(newList:List<TimeLineModel>){
+        listItem = newList
+        notifyDataSetChanged()
+    }
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val timeLineModel = listItem[position]
-
         when {
             timeLineModel.status == OrderStatus.INACTIVE -> {
                 holder.timeline.marker = VectorDrawableUtils.getDrawable(holder.itemView.context, R.drawable.ic_marker_inactive, tlAttributes.markerColor)

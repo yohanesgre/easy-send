@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+        <LinearLayout
+            android:id="@+id/content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/outut_kepada"
+                android:text="Kepada: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/outut_alamat"
+                android:text="Alamat: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/output_nomer_surja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nomor Surat Jalan: "/>
+                <TextView
+                    android:id="@+id/output_nomer_nopol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="NOPOL: "/>
+            </LinearLayout>
+            <!-- Table -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false">
+                <!-- Row Dari -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Dari"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_dari"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Dari"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <!-- Row Tujuan -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Tujuan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_tujuan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Tujuan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <!-- Row Jenis Muatan -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Jenis Muatan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_jenis_muatan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Jenis Muatan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <!-- Row Estmasi Berat -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Estimasi Berat"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_estimasi_berat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Estimasi Berat"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <!-- Row Kebutuhan Tambahan -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Kebutuhan Tambahan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_kebutuhan_tambahan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Kebutuhan Tambahan"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <!-- Row Nomor Kontainer -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.85"
+                        android:text="Nomor Kontainer"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                    <TextView
+                        android:id="@+id/output_row_nomor_kontainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.15"
+                        android:text="Nomor Kontainer"
+                        android:padding="@dimen/textview_cell_padding"
+                        android:background="@drawable/bg_cell_grey_1dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp"
+                    android:weightSum="3">
+                    <!-- Ttd Pembawa -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pembawa"/>
+                        <ImageView
+                            android:id="@+id/iv_ttd_pembawa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="75dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ttd"
+                            android:background="@drawable/bg_border_green_all_10_round"
+                            android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding" />
+                    </LinearLayout>
+                    <!-- Ttd Penerima -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Penerima"/>
+                        <ImageView
+                            android:id="@+id/iv_ttd_penerima"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="75dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ttd"
+                            android:background="@drawable/bg_border_green_all_10_round"
+                            android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding" />
+                    </LinearLayout>
+                    <!-- Ttd Pengirim -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pengirim"/>
+                        <ImageView
+                            android:id="@+id/iv_ttd_pengirim"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="75dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ttd"
+                            android:background="@drawable/bg_border_green_all_10_round"
+                            android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

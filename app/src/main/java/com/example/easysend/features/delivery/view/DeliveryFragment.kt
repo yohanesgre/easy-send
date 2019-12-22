@@ -1,15 +1,16 @@
-package com.example.easysend.features.delivery.activities.view
+package com.example.easysend.features.delivery.view
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.location.Location
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easysend.R
-import com.example.easysend.databinding.ActivityDeliveryBinding
+import com.example.easysend.databinding.FragmentDeliveryBinding
 import com.example.easysend.extentions.dpToPx
 import com.example.easysend.extentions.getColorCompat
 import com.example.easysend.features.delivery.adapter.TimelineAdapter
@@ -41,10 +42,13 @@ import retrofit2.Response
 import timber.log.Timber
 import java.lang.ref.WeakReference
 
-class DeliveryActivity : AppCompatActivity(), PermissionsListener {
+class DeliveryFragment : Fragment(), PermissionsListener {
 
     private val listItemTimeline = ArrayList<TimeLineModel>()
-    private lateinit var binding: ActivityDeliveryBinding
+    private val listItemTimelineEmpty = ArrayList<TimeLineModel>()
+    private var buttonState = 0
+    private lateinit var timelineAdapter: TimelineAdapter
+    private lateinit var binding: FragmentDeliveryBinding
 
     private val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
     private val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5
@@ -68,12 +72,17 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(
-            this,
+            requireContext(),
             "pk.eyJ1IjoieW9oYW5lc2dyZSIsImEiOiJjazQxcTM0am4wM3M5M21vYjlobXZ2OWN0In0.hxBaTdK-D8a-4oQS2ENS5Q"
         )
-        binding = DataBindingUtil.setContentView(this,
-            R.layout.activity_delivery
-        )
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentDeliveryBinding.inflate(inflater, container, false)
         mapView = binding.mapView
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync{map->
@@ -85,7 +94,7 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
         }
         tlAttributes = TimelineAttributes(
             markerSize = dpToPx(20f),
-            markerColor = getColorCompat(R.color.colorGrey500),
+            markerColor = getColorCompat(R.color.colorPrimary),
             markerInCenter = true,
             markerLeftPadding = dpToPx(0f),
             markerTopPadding = dpToPx(0f),
@@ -99,82 +108,33 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
             lineDashWidth = dpToPx(4f),
             lineDashGap = dpToPx(2f)
         )
-        setDataListItems()
+        setDataEmptyItemList()
         initRecyclerView()
         binding.apply {
             bottomSheetLayout.bottomSheetContent.btnSuratJalanUpload.setOnClickListener {
-                startActivity(Intent(this@DeliveryActivity, UploadSuratJalanActivity::class.java))
+                /*startActivity(Intent(requireContext(), UploadSuratJalanActivity::class.java))*/
             }
             bottomSheetLayout.bottomSheetContent.btnBiayaTambahanUpload.setOnClickListener {
-                startActivity(
+                /*startActivity(
                     Intent(
-                        this@DeliveryActivity,
+                       requireContext(),
                         UploadBiayaTambahanActivity::class.java
                     )
-                )
+                )*/
             }
         }
         tlAttributes.orientation = Orientation.VERTICAL
+        return binding.root
     }
 
-    private fun setDataListItems() {
-        listItemTimeline.add(TimeLineModel("Item successfully delivered", "", OrderStatus.INACTIVE))
-        listItemTimeline.add(
-            TimeLineModel(
-                "Courier is out to delivery your order",
-                "2017-02-12 08:00",
-                OrderStatus.ACTIVE
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Item has reached courier facility at New Delhi",
-                "2017-02-11 21:00",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Item has been given to the courier",
-                "2017-02-11 18:00",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Item is packed and will dispatch soon",
-                "2017-02-11 09:30",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Order is being readied for dispatch",
-                "2017-02-11 08:00",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Order processing initiated",
-                "2017-02-10 15:00",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Order confirmed by seller",
-                "2017-02-10 14:30",
-                OrderStatus.COMPLETED
-            )
-        )
-        listItemTimeline.add(
-            TimeLineModel(
-                "Order placed successfully",
-                "2017-02-10 14:00",
-                OrderStatus.COMPLETED
-            )
-        )
+    private fun setDataEmptyItemList(){
+        listItemTimelineEmpty.add(TimeLineModel("Start dari Garasi", "2019-12-12 07:00", OrderStatus.COMPLETED))
+        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Load", "", OrderStatus.ACTIVE))
+        listItemTimelineEmpty.add(TimeLineModel("Selesai Loading", "", OrderStatus.INACTIVE))
+        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.INACTIVE))
+        listItemTimelineEmpty.add(TimeLineModel("Selesai Unload 1", "", OrderStatus.INACTIVE))
+        listItemTimelineEmpty.add(TimeLineModel("Sampai Lokasi Unload 2", "", OrderStatus.INACTIVE))
+        listItemTimelineEmpty.add(TimeLineModel("Selesai Unload 2", "", OrderStatus.INACTIVE))
     }
 
     private fun initRecyclerView() {
@@ -190,30 +150,96 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
     }
 
     private fun initAdapter() {
+        initButtonTimeline()
+        timelineAdapter = TimelineAdapter(listItemTimeline, tlAttributes)
         binding.bottomSheetLayout.bottomSheetContent.timeline.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@DeliveryActivity, RecyclerView.VERTICAL, false)
-            adapter = TimelineAdapter(listItemTimeline, tlAttributes)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = timelineAdapter
+        }
+        binding.bottomSheetLayout.bottomSheetContent.timelineEmpty.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = TimelineAdapter(listItemTimelineEmpty, tlAttributes)
+        }
+    }
+
+    private fun initButtonTimeline(){
+        binding.bottomSheetLayout.bottomSheetContent.btnTimeline.setOnClickListener {
+            when(buttonState){
+                0 ->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Load"
+                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Load", "2019-12-12 09:30", OrderStatus.COMPLETED))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                    println("Button State: $buttonState")
+                }
+                1 ->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Loading"
+                    listItemTimeline.add(TimeLineModel("Selesai Loading", "", OrderStatus.ACTIVE))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+                2 ->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Unload 1"
+                    listItemTimeline.removeAt(listItemTimeline.size - 1)
+                    listItemTimeline.add(TimeLineModel("Selesai Loading", "2019-12-12 12:00", OrderStatus.COMPLETED))
+                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 1", "", OrderStatus.ACTIVE))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+                3->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Unloading 1"
+                    listItemTimeline.removeAt(listItemTimeline.size - 1)
+                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unload 1", "2019-12-12 19:00", OrderStatus.COMPLETED))
+                    listItemTimeline.add(TimeLineModel("Selesai Unloading 1", "", OrderStatus.ACTIVE))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+                4->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Sampai Lokasi Unload 2"
+                    listItemTimeline.removeAt(listItemTimeline.size - 1)
+                    listItemTimeline.add(TimeLineModel("Selesai Unloading 1", "2019-12-12 20:00", OrderStatus.COMPLETED))
+                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unloading 2", "", OrderStatus.ACTIVE))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+                5->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Selesai Unloading 2"
+                    listItemTimeline.removeAt(listItemTimeline.size - 1)
+                    listItemTimeline.add(TimeLineModel("Sampai Lokasi Unloading 2", "2019-12-12 21:00", OrderStatus.COMPLETED))
+                    listItemTimeline.add(TimeLineModel("Selesai Unloading 2", "", OrderStatus.ACTIVE))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+                6->{
+                    binding.bottomSheetLayout.bottomSheetContent.btnTimeline.text = "Menuju Garasi"
+                    listItemTimeline.removeAt(listItemTimeline.size - 1)
+                    listItemTimeline.add(TimeLineModel("Selesai Unloading 2", "2019-12-12 21:30", OrderStatus.COMPLETED))
+                    timelineAdapter.updateList(listItemTimeline)
+                    buttonState++
+                }
+            }
+
         }
     }
 
     private fun enableLocation(loadedMapStyle: Style) {
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+        if (PermissionsManager.areLocationPermissionsGranted(requireContext())) {
             initializeLocationComponent(loadedMapStyle)
             initializeLocationEngine()
         } else {
             permissionManager = PermissionsManager(this)
-            permissionManager.requestLocationPermissions(this)
+            permissionManager.requestLocationPermissions(requireActivity())
         }
     }
 
     @SuppressWarnings("MissingPermission")
     fun initializeLocationEngine() {
-        locationEngine = LocationEngineProvider.getBestLocationEngine(this)
+        locationEngine = LocationEngineProvider.getBestLocationEngine(requireContext())
         val request = LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
                 .setPriority(LocationEngineRequest.PRIORITY_HIGH_ACCURACY)
                 .setMaxWaitTime(DEFAULT_MAX_WAIT_TIME).build()
 
-        locationEngine!!.requestLocationUpdates(request, callback, mainLooper)
+        locationEngine!!.requestLocationUpdates(request, callback, requireActivity().mainLooper)
         locationEngine!!.getLastLocation(callback).run {
             checkLocation()
             originLocation?.run {
@@ -231,7 +257,7 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
         locationComponent = mapboxMap.locationComponent
         // Set the LocationComponent activation options
         val locationComponentActivationOptions =
-        LocationComponentActivationOptions.builder(this, loadedMapStyle)
+        LocationComponentActivationOptions.builder(requireContext(), loadedMapStyle)
             .useDefaultLocationEngine(false)
             .build()
 
@@ -266,14 +292,14 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
         } else {
             Snackbar.make(binding.root, "User location was not granted", Snackbar.LENGTH_LONG)
                 .show()
-            finish()
+            requireActivity().finish()
         }
     }
 
     @SuppressWarnings("MissingPermission")
     override fun onStart() {
         super.onStart()
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+        if (PermissionsManager.areLocationPermissionsGranted(requireContext())) {
             locationComponent?.onStart()
         }
         mapView?.onStart()
@@ -313,21 +339,21 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
         }
     }
 
-    private class LocationListeningCallback internal constructor(val activity: DeliveryActivity) :
+    private class LocationListeningCallback internal constructor(val fragment: DeliveryFragment) :
         LocationEngineCallback<LocationEngineResult> {
-        private val activityWeakReference = WeakReference(activity)
+        private val activityWeakReference = WeakReference(fragment)
         override fun onSuccess(result: LocationEngineResult) {
-            if (activity != null) {
+            if (fragment != null) {
                 val location = result.lastLocation ?: return
                 // Create a Toast which displays the new location's coordinates
                 Snackbar.make(
-                    activity.binding.root,
+                    fragment.binding.root,
                     "New lat: ${result.lastLocation!!.latitude} New longitude: ${result.lastLocation!!.longitude}",
                     Snackbar.LENGTH_SHORT
                 ).show()
                 // Pass the new location to the Maps SDK's LocationComponent
-                if (activity.mapboxMap != null && result.lastLocation != null) {
-                    activity.mapboxMap.locationComponent.forceLocationUpdate(result.lastLocation)
+                if (fragment.mapboxMap != null && result.lastLocation != null) {
+                    fragment.mapboxMap.locationComponent.forceLocationUpdate(result.lastLocation)
                 }
                 result.lastLocation
             }
@@ -358,7 +384,7 @@ class DeliveryActivity : AppCompatActivity(), PermissionsListener {
     }
 
     private fun getRoute(originPoint: Point, endPoint: Point) {
-        NavigationRoute.builder(this)
+        NavigationRoute.builder(requireContext())
             .accessToken(Mapbox.getAccessToken()!!)
             .origin(originPoint)
             .destination(endPoint)

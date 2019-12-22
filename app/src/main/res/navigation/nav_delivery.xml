@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_nav"
+    app:startDestination="@id/deliveryFragment">
+
+    <fragment
+        android:id="@+id/deliveryFragment"
+        android:name="com.example.easysend.features.delivery.view.DeliveryFragment"
+        android:label="DeliveryFragment" >
+        <action
+            android:id="@+id/action_deliveryFragment_to_deliveryDetilFragment"
+            app:destination="@id/deliveryDetilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deliveryDetilFragment"
+        android:name="com.example.easysend.features.delivery.view.DeliveryDetilFragment"
+        android:label="DeliveryDetilFragment" >
+        <action
+            android:id="@+id/action_deliveryDetilFragment_to_deliveryFragment"
+            app:destination="@id/deliveryFragment" />
+    </fragment>
+</navigation>

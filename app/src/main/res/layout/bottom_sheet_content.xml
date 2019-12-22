@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -8,16 +7,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <include layout="@layout/layout_timeline"
-                android:id="@+id/timeline"/>
-            <include android:id="@+id/layout_detil_order"
-                layout="@layout/bottom_sheet_content_detil_order"/>
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_detil_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detil Order"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+                <ImageView
+                    android:id="@+id/btn_emergency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_alert_small"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:layout_gravity="end"/>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/layout_timeline"
+                    android:id="@+id/timeline"/>
+                <include layout="@layout/layout_timeline_empty"
+                    android:id="@+id/timeline_empty"/>
+            </FrameLayout>
+            <Button
+                android:id="@+id/btn_timeline"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sampai Lokasi Load"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/underline_grey"
+                android:layout_marginBottom="10dp"/>
+            <include layout="@layout/bottom_sheet_content_surat_jalan"
+                android:id="@+id/content_surat_jalan" />
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/underline_grey"/>
             <!-- Nota Biaya Tambahan -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -29,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_border_all_10_round_blue"
-                    android:paddingHorizontal="3dp"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
                     android:text="Upload" />
             </LinearLayout>
@@ -37,7 +76,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -49,24 +89,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_border_all_10_round_blue"
-                    android:paddingHorizontal="3dp"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
                     android:text="Upload" />
             </LinearLayout>
-            <com.ncorti.slidetoact.SlideToActView
-                android:id="@+id/example_gray_on_green"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                app:area_margin="4dp"
-                app:border_radius="2dp"
-                app:inner_color="@android:color/darker_gray"
-                app:outer_color="@android:color/holo_green_dark"
-                app:slider_height="50dp"
-                app:slider_locked="false"
-                app:text="Sampai di Lokasi"
-                app:text_size="12sp"/>
+
             <View
                 android:id="@+id/blank_space"
                 android:layout_width="match_parent"

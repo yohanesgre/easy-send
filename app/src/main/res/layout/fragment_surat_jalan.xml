@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/bottom_sheet_content_detil_order"
+                    android:id="@+id/detil_order"/>
+                <include layout="@layout/layout_timeline"
+                    android:id="@+id/timeline"/>
+                <!-- Surat Jalan -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="Lihat Surat Jalan Asli" />
+                    <TextView
+                        android:id="@+id/btn_surat_jalan_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_border_all_10_round_blue"
+                        android:paddingHorizontal="3dp"
+                        android:paddingVertical="2dp"
+                        android:text="Lihat" />
+                </LinearLayout>
+                <!-- Nota Biaya Tambahan -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="Lihat Nota Biaya Tambahan" />
+                    <TextView
+                        android:id="@+id/btn_biaya_tambahan_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_border_all_10_round_blue"
+                        android:paddingHorizontal="3dp"
+                        android:paddingVertical="2dp"
+                        android:text="Lihat" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

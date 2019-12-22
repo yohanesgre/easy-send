@@ -7,14 +7,14 @@ import androidx.core.content.ContextCompat
 import com.example.easysend.App
 
 fun dpToPx(dp: Float): Int {
-    return dpToPx(dp, App.Instance.resources)
+    return dpToPx(dp, App.instance.resources)
 }
 private fun dpToPx(dp: Float, resources: Resources): Int {
     val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
     return px.toInt()
 }
 
-fun getColorCompat(resId: Int) = ContextCompat.getColor(App.Instance, resId)
+fun getColorCompat(resId: Int) = ContextCompat.getColor(App.instance, resId)
 
 fun View.setVisible() {
     visibility = View.VISIBLE

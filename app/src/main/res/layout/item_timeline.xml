@@ -32,7 +32,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="15dp"
-        app:cardBackgroundColor="@android:color/darker_gray"
+        app:cardBackgroundColor="@android:color/white"
         app:contentPadding="15dp">
 
         <LinearLayout

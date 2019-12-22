@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:elevation="0dp">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="parallax">
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+                <!-- Informasi Pesanan -->
+                <LinearLayout
+                    android:id="@+id/layout_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="25dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_output_no_pesanan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Pesanan 9182"
+                        android:textSize="20sp"/>
+                    <!-- Lokasi Pengambilan -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lokasi Pengambilan"/>
+                    <TextView
+                        android:id="@+id/tv_output_lokasi_pengambilan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="10dp"
+                        android:text="Jl. Kali Jagal No. 101, Jakarta"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:drawableLeft="@drawable/ic_location_small"
+                        android:drawableRight="@android:drawable/ic_menu_search"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Lokasi Pengiriman -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lokasi Pengiriman"/>
+                    <TextView
+                        android:id="@+id/tv_output_lokasi_pengiriman"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Jl. Soekarno No. 1, Surabaya"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:drawableLeft="@drawable/ic_location_small"
+                        android:drawablePadding="10dp"
+                        android:drawableRight="@android:drawable/ic_menu_search" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Rute Tambahan -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rute Tambahan"/>
+                    <TextView
+                        android:id="@+id/tv_output_rute_tambahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Jl. Soekarno No. 1, Surabaya"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:drawableLeft="@drawable/ic_location_small"
+                        android:drawablePadding="10dp"
+                        android:drawableRight="@android:drawable/ic_menu_search" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Tipe Pengiriman -->
+                    <RadioGroup
+                        android:id="@+id/rg_tipe_pengiriman"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rb_pengiriman_sekali"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/rb_pengiriman_sekali"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sekali Jalan"
+                            android:layout_weight="1"/>
+                        <RadioButton
+                            android:id="@+id/rb_pengiriman_pp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pulang Pergi"
+                            android:layout_weight="1"
+                            android:layout_gravity="end"/>
+                    </RadioGroup>
+                    <!-- Berat Volume Barang dan Jumlah Truck -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2">
+                        <!-- Berat Volume Barang -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="5dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Berat atau Volume Barang"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+                                <TextView
+                                    android:id="@+id/tv_output_berat_volume_barang"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical"
+                                    android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                                    android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                                    android:text="7000" />
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="0.3"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:text="kg"/>
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/underline_grey"
+                                android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                        </LinearLayout>
+                        <!-- Jumlah Truck -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Jumlah Truck"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1"
+                                android:layout_marginEnd="5dp">
+                                <TextView
+                                    android:id="@+id/tv_output_jumlah_truck"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical"
+                                    android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                                    android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                                    android:text="7000" />
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="0.3"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:text="unit"/>
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/underline_grey"
+                                android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- Jenis Truck -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Truck"/>
+                    <TextView
+                        android:id="@+id/tv_output_jenis_truck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:text="1x20 Feet" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Nomor Kontainer -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomor Kontainer"/>
+                    <TextView
+                        android:id="@+id/tv_output_nomor_kontainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:text="12345678910111213" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Nama Kapal -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Kapal"/>
+                    <TextView
+                        android:id="@+id/tv_output_nama_kapal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:text="Malaka 75450" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Kebutuhan Tambahan -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kebutuhan Tambahan"/>
+                    <TextView
+                        android:id="@+id/tv_output_kebutuhan_tambahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+
+                        android:text="Tidak ada" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/underline_grey"
+                        android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                    <!-- Tanggal dan Waktu -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="2">
+                        <!-- Tanggal -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="45dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tanggal"/>
+                            <TextView
+                                android:id="@+id/tv_output_tanggal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                                android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                                android:text="10/09/2019" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/underline_grey"
+                                android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                        </LinearLayout>
+                        <!-- Waktu -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="30dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Waktu"/>
+                            <TextView
+                                android:id="@+id/tv_output_waktu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                                android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                                android:text="20:21"/>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/underline_grey"
+                                android:layout_marginBottom="@dimen/textview_boxed_bottom_margin"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- Deskripsi Barang, Tarif, dan Jatuh Tempo Pembayaran -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+                        <!-- Deskripsi Barang -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1.2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Deskripsi Barang" />
+
+                            <TextView
+                                android:id="@+id/tv_output_deskripsi_barang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_border_grey_all_5_round_white"
+                                android:minHeight="75dp"
+                                android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
+                                android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                                android:text="@string/lorem_ipsum_5_words" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
