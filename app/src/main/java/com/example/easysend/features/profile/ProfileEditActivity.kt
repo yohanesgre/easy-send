@@ -14,6 +14,14 @@ class ProfileEditActivity : AppCompatActivity(), Injectable{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
+        binding.toolbar.title="Edit Profile"
+        setSupportActionBar(binding.toolbar)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         binding.btnSimpan.setOnClickListener { finish() }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -9,12 +9,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.example.easysend.R
 import com.example.easysend.databinding.FragmentHomeBinding
 import com.example.easysend.di.Injectable
+import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.home.adapter.RatingAdapter
 import com.example.easysend.features.notification.NotificationActivity
+import com.example.easysend.features.point.PointActivity
+import com.example.easysend.features.rating.RatingActivity
 
 
 class HomeFragment : Fragment(), Injectable {
@@ -75,6 +79,20 @@ class HomeFragment : Fragment(), Injectable {
         }
         binding.ivNotif.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
+        }
+        binding.btnEmergency.setOnClickListener {
+            val myItems = listOf("LAKA", "Ban Pecah", "Kendaraan Rusak", "HP Lowbat", "Lainnya")
+                MaterialDialog(requireContext()).show {
+                    listItems(items = myItems) { dialog, index, text ->
+                        startActivity(Intent(requireActivity(), DaruratDeliveryActivity::class.java))
+                    }
+                }
+        }
+        binding.layoutRatingStar.setOnClickListener {
+            startActivity(Intent(requireContext(), RatingActivity::class.java))
+        }
+        binding.layoutPointInfo.setOnClickListener {
+            startActivity(Intent(requireContext(), PointActivity::class.java))
         }
     }
     private fun subscribeUI(){

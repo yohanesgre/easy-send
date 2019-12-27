@@ -25,21 +25,22 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp">
+                android:layout_height="match_parent">
                 <!-- Informasi Pesanan -->
                 <LinearLayout
                     android:id="@+id/layout_pesanan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="25dp"
+                    android:layout_marginVertical="15dp"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/tv_output_no_pesanan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No Pesanan 9182"
-                        android:textSize="20sp"/>
+                        android:textSize="24sp"
+                        android:layout_marginBottom="15dp"/>
                     <!-- Lokasi Pengambilan -->
                     <TextView
                         android:layout_width="wrap_content"
@@ -55,7 +56,9 @@
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                         android:drawableLeft="@drawable/ic_location_small"
-                        android:drawableRight="@android:drawable/ic_menu_search"/>
+                        android:drawableRight="@android:drawable/ic_menu_search"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -76,7 +79,9 @@
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                         android:drawableLeft="@drawable/ic_location_small"
                         android:drawablePadding="10dp"
-                        android:drawableRight="@android:drawable/ic_menu_search" />
+                        android:drawableRight="@android:drawable/ic_menu_search"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -97,7 +102,9 @@
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                         android:drawableLeft="@drawable/ic_location_small"
                         android:drawablePadding="10dp"
-                        android:drawableRight="@android:drawable/ic_menu_search" />
+                        android:drawableRight="@android:drawable/ic_menu_search"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -115,14 +122,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sekali Jalan"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:textSize="16sp" />
                         <RadioButton
                             android:id="@+id/rb_pengiriman_pp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Pulang Pergi"
                             android:layout_weight="1"
-                            android:layout_gravity="end"/>
+                            android:layout_gravity="end"
+                            android:textSize="16sp" />
                     </RadioGroup>
                     <!-- Berat Volume Barang dan Jumlah Truck -->
                     <LinearLayout
@@ -136,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:layout_marginEnd="5dp">
+                            android:layout_marginEnd="10dp">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -144,22 +153,25 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:weightSum="1">
+                                android:weightSum="1"
+                                android:gravity="center_vertical">
                                 <TextView
                                     android:id="@+id/tv_output_berat_volume_barang"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.7"
+                                    android:layout_weight="0.6"
                                     android:gravity="center_vertical"
                                     android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                     android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                    android:text="7000" />
+                                    android:text="7000"
+                                    android:textSize="16sp"
+                                    android:textColor="@android:color/black"/>
                                 <TextView
                                     android:layout_width="0dp"
-                                    android:layout_weight="0.3"
+                                    android:layout_weight="0.4"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
-                                    android:text="kg"/>
+                                    android:text="Kilo Gram"/>
                             </LinearLayout>
                             <View
                                 android:layout_width="match_parent"
@@ -190,7 +202,9 @@
                                     android:gravity="center_vertical"
                                     android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                     android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                    android:text="7000" />
+                                    android:text="7000"
+                                    android:textSize="16sp"
+                                    android:textColor="@android:color/black"/>
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_weight="0.3"
@@ -217,7 +231,9 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                        android:text="1x20 Feet" />
+                        android:text="1x20 Feet"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -235,7 +251,9 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                        android:text="12345678910111213" />
+                        android:text="12345678910111213"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -253,7 +271,9 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                        android:text="Malaka 75450" />
+                        android:text="Malaka 75450"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -263,7 +283,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kebutuhan Tambahan"/>
+                        android:text="Kebutuhan Tambahan" />
                     <TextView
                         android:id="@+id/tv_output_kebutuhan_tambahan"
                         android:layout_width="match_parent"
@@ -271,8 +291,9 @@
                         android:gravity="center_vertical"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-
-                        android:text="Tidak ada" />
+                        android:text="Tidak ada"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -302,7 +323,9 @@
                                 android:gravity="center_vertical"
                                 android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                 android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                android:text="10/09/2019" />
+                                android:text="10/09/2019"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"/>
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
@@ -328,7 +351,9 @@
                                 android:textAlignment="center"
                                 android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                 android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                android:text="20:21"/>
+                                android:text="20:21"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"/>
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
@@ -363,8 +388,36 @@
                                 android:minHeight="75dp"
                                 android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                 android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                android:text="@string/lorem_ipsum_5_words" />
+                                android:text="@string/lorem_ipsum_5_words"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"/>
                         </LinearLayout>
+                    </LinearLayout>
+                    <!-- Nomer Pengurus dan Salin -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:text="Nomor Pengurus: "/>
+                        <TextView
+                            android:id="@+id/tv_output_nomor_pengurus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:text="08122233444"/>
+                        <TextView
+                            android:id="@+id/tv_btn_salin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:text="Salin"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

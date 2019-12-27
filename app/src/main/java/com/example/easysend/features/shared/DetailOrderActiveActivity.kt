@@ -36,4 +36,8 @@ class DetailOrderActiveActivity : AppCompatActivity(), Injectable{
             }
         }
     }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

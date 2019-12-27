@@ -26,7 +26,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="15dp">
                 <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -41,17 +42,15 @@
                 </androidx.coordinatorlayout.widget.CoordinatorLayout>
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/activity_vertical_margin">
                     <include layout="@layout/layout_timeline"
                         android:id="@+id/timeline"/>
-                    <include layout="@layout/bottom_sheet_content_sampai_garasi"
-                        android:id="@+id/layout_sampai_garasi" />
                 </FrameLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/underline_grey"
-                    android:layout_marginBottom="10dp"/>
+                    android:background="@color/underline_grey" />
                 <include layout="@layout/bottom_sheet_content_surat_jalan"
                     android:id="@+id/content_surat_jalan" />
                 <View
@@ -103,11 +102,6 @@
                         android:text="Lihat"
                         android:textColor="@color/white"/>
                 </LinearLayout>
-
-                <View
-                    android:id="@+id/blank_space"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

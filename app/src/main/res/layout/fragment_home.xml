@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -22,19 +24,19 @@
                 <ImageView
                     android:layout_marginTop="100dp"
                     android:src="@drawable/ic_easy_send_logo"
-                    android:layout_width="280dp"
-                    android:layout_height="300dp"
+                    android:layout_width="260dp"
+                    android:layout_height="280dp"
                     android:scaleType="fitXY"
                     android:tint="@color/bg_grey_100"
                     android:layout_alignParentStart="true"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="40dp">
+                    android:orientation="vertical">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
                         <ImageView
                             android:id="@+id/iv_logo_easy_send"
                             android:src="@drawable/ic_logo_easysend"
@@ -56,8 +58,8 @@
                             app:layout_constraintLeft_toRightOf="@id/iv_logo_easy_send"/>
                         <ImageView
                             android:id="@+id/iv_notif"
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_notif"
                             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                             android:layout_alignParentRight="true"
@@ -74,13 +76,15 @@
                         android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
                         <TextView
                             android:text="Rating"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular" />
                         <TextView
                             android:text="Point"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/roboto_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"/>
@@ -97,7 +101,7 @@
                             android:id="@+id/layout_rating_star"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
-                            android:background="@drawable/bg_border_green_all_10_round"
+                            android:background="@drawable/bg_border_green_all_10_round_grey"
                             android:padding="10dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="5dp"
@@ -118,7 +122,7 @@
                             android:id="@+id/layout_point_info"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
-                            android:background="@drawable/bg_border_green_all_10_round"
+                            android:background="@drawable/bg_border_green_all_10_round_grey"
                             android:paddingVertical="5dp"
                             android:paddingHorizontal="10sp"
                             android:layout_marginEnd="20dp"
@@ -128,7 +132,9 @@
                                 android:id="@+id/output_point"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
+                                android:textSize="24sp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@color/colorPrimary"
                                 android:text="1000"
                                 android:gravity="right"
                                 android:layout_gravity="center_vertical|right"/>
@@ -141,7 +147,7 @@
                         android:clipToPadding="false"
                         android:layout_marginTop="20dp"
                         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                        android:background="@drawable/bg_border_green_all_10_round">
+                        android:background="@drawable/bg_border_green_all_10_round_grey">
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -152,7 +158,7 @@
                                 android:id="@+id/tv_lbl_edit_profile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Edit Profile"
+                                android:text="Edit"
                                 android:textSize="12sp"/>
                             <TextView
                                 app:layout_constraintTop_toTopOf="parent"
@@ -236,7 +242,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="No Pesanan 9182"
-                            android:textSize="20sp"/>
+                            android:textSize="24sp"
+                            android:layout_marginBottom="15dp"/>
                         <!-- Lokasi Pengambilan -->
                         <TextView
                             android:layout_width="wrap_content"
@@ -252,7 +259,9 @@
                             android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                             android:drawableLeft="@drawable/ic_location_small"
-                            android:drawableRight="@android:drawable/ic_menu_search"/>
+                            android:drawableRight="@android:drawable/ic_menu_search"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -273,7 +282,9 @@
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                             android:drawableLeft="@drawable/ic_location_small"
                             android:drawablePadding="10dp"
-                            android:drawableRight="@android:drawable/ic_menu_search" />
+                            android:drawableRight="@android:drawable/ic_menu_search"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -294,7 +305,9 @@
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
                             android:drawableLeft="@drawable/ic_location_small"
                             android:drawablePadding="10dp"
-                            android:drawableRight="@android:drawable/ic_menu_search" />
+                            android:drawableRight="@android:drawable/ic_menu_search"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -312,14 +325,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sekali Jalan"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1"
+                                android:textSize="16sp" />
                             <RadioButton
                                 android:id="@+id/rb_pengiriman_pp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pulang Pergi"
                                 android:layout_weight="1"
-                                android:layout_gravity="end"/>
+                                android:layout_gravity="end"
+                                android:textSize="16sp" />
                         </RadioGroup>
                         <!-- Berat Volume Barang dan Jumlah Truck -->
                         <LinearLayout
@@ -333,7 +348,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
-                                android:layout_marginEnd="5dp">
+                                android:layout_marginEnd="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -341,22 +356,25 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:weightSum="1">
+                                    android:weightSum="1"
+                                    android:gravity="center_vertical">
                                     <TextView
                                         android:id="@+id/tv_output_berat_volume_barang"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.7"
+                                        android:layout_weight="0.6"
                                         android:gravity="center_vertical"
                                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                        android:text="7000" />
+                                        android:text="7000"
+                                        android:textSize="16sp"
+                                        android:textColor="@android:color/black"/>
                                     <TextView
                                         android:layout_width="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_weight="0.4"
                                         android:gravity="center"
                                         android:layout_height="wrap_content"
-                                        android:text="kg"/>
+                                        android:text="Kilo Gram"/>
                                 </LinearLayout>
                                 <View
                                     android:layout_width="match_parent"
@@ -387,7 +405,9 @@
                                         android:gravity="center_vertical"
                                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                         android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                        android:text="7000" />
+                                        android:text="7000"
+                                        android:textSize="16sp"
+                                        android:textColor="@android:color/black"/>
                                     <TextView
                                         android:layout_width="0dp"
                                         android:layout_weight="0.3"
@@ -414,7 +434,9 @@
                             android:gravity="center_vertical"
                             android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                            android:text="1x20 Feet" />
+                            android:text="1x20 Feet"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -432,7 +454,9 @@
                             android:gravity="center_vertical"
                             android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                            android:text="12345678910111213" />
+                            android:text="12345678910111213"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -450,7 +474,9 @@
                             android:gravity="center_vertical"
                             android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                            android:text="Malaka 75450" />
+                            android:text="Malaka 75450"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -460,7 +486,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kebutuhan Tambahan"/>
+                            android:text="Kebutuhan Tambahan" />
                         <TextView
                             android:id="@+id/tv_output_kebutuhan_tambahan"
                             android:layout_width="match_parent"
@@ -468,8 +494,9 @@
                             android:gravity="center_vertical"
                             android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                             android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-
-                            android:text="Tidak ada" />
+                            android:text="Tidak ada"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/black"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -499,7 +526,9 @@
                                     android:gravity="center_vertical"
                                     android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                     android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                    android:text="10/09/2019" />
+                                    android:text="10/09/2019"
+                                    android:textSize="16sp"
+                                    android:textColor="@android:color/black"/>
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="2dp"
@@ -525,7 +554,9 @@
                                     android:textAlignment="center"
                                     android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                     android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                    android:text="20:21"/>
+                                    android:text="20:21"
+                                    android:textSize="16sp"
+                                    android:textColor="@android:color/black"/>
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="2dp"
@@ -560,7 +591,9 @@
                                     android:minHeight="75dp"
                                     android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
                                     android:paddingVertical="@dimen/textview_boxed_vertical_padding"
-                                    android:text="@string/lorem_ipsum_5_words" />
+                                    android:text="@string/lorem_ipsum_5_words"
+                                    android:textSize="16sp"
+                                    android:textColor="@android:color/black"/>
                             </LinearLayout>
                         </LinearLayout>
                         <!-- Nomer Pengurus dan Salin -->
@@ -586,6 +619,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.6"
                                 android:text="Salin"
+                                android:textColor="@color/colorPrimary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <!-- Tombol Mulai -->
@@ -593,7 +627,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+                            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                            android:layout_marginVertical="15dp">
                             <Button
                                 android:id="@+id/btn_simpan"
                                 android:layout_width="0dp"

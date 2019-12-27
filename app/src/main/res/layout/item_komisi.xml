@@ -12,7 +12,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginVertical="10dp"
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
@@ -23,15 +24,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
                     android:text="Alamat Tujuan: "/>
                 <TextView
                     android:id="@+id/tv_alamat_tujuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
                     tools:text="Jalan Surato sari, Jakarta"/>
             </LinearLayout>
 
@@ -42,18 +41,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
                     android:text="Waktu Sampai: "/>
                 <TextView
                     android:id="@+id/tv_waktu_sampai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
                     tools:text="10/11/2019 07:00 WIB"/>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,16 +57,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:text="Komisi: "/>
                 <TextView
                     android:id="@+id/tv_komisi"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
+                    android:gravity="end"
                     android:textStyle="bold"
-                    android:layout_gravity="end"
                     tools:text="Rp. 500.000"/>
             </LinearLayout>
         </LinearLayout>

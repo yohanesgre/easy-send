@@ -6,7 +6,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingVertical="15dp">
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
             </FrameLayout>
             <Button
                 android:id="@+id/btn_timeline"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,12 +44,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/underline_grey"
-                android:layout_marginBottom="10dp"/>
-            <include layout="@layout/bottom_sheet_content_surat_jalan"
-                android:id="@+id/content_surat_jalan" />
+                android:background="@color/underline_grey" />
+
+            <include
+                android:id="@+id/content_surat_jalan"
+                layout="@layout/bottom_sheet_content_surat_jalan" />
+
             <View
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/underline_grey"/>
@@ -103,7 +106,8 @@
                     android:layout_marginEnd="10dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
-                    android:text="Upload" />
+                    android:text="Upload"
+                    android:textColor="@color/white"/>
                 <TextView
                     android:id="@+id/btn_surat_jalan_lihat"
                     android:layout_width="wrap_content"
@@ -115,10 +119,6 @@
                     android:textColor="@color/white"/>
             </LinearLayout>
 
-            <View
-                android:id="@+id/blank_space"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

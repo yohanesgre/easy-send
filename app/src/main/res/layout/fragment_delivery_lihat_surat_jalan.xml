@@ -32,7 +32,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Upload Gambar"
+                        android:text="Gambar"
                         android:layout_gravity="center"/>
                 </FrameLayout>
                 <LinearLayout
@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nomor Surat Jalan"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/tv_output_nomor_surat_jalan"
                         android:layout_width="match_parent"
@@ -56,7 +56,8 @@
                         android:text="123455"
                         android:textSize="20sp"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
-                        android:paddingVertical="@dimen/textview_boxed_vertical_padding" />
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:textStyle="bold"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -66,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nomor Kendaraan"
-                        android:textSize="22sp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/tv_output_nomor_kendaraan"
                         android:layout_width="match_parent"
@@ -75,7 +76,8 @@
                         android:text="L 1234 M"
                         android:textSize="20sp"
                         android:paddingHorizontal="@dimen/textview_boxed_horizontal_padding"
-                        android:paddingVertical="@dimen/textview_boxed_vertical_padding" />
+                        android:paddingVertical="@dimen/textview_boxed_vertical_padding"
+                        android:textStyle="bold"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/layout_reward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/vertical_margin_small">
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="135dp"
+            android:layout_height="90dp"
+            android:src="@drawable/ic_paket_umroh"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="30dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paket Umroh\n15500 Poin"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center_vertical"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_next"
+                android:scaleY="2"
+                android:scaleX="2"
+                android:tint="@color/colorPrimary"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="10dp"/>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

@@ -6,7 +6,10 @@ import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.login.LoginActivity
 import com.example.easysend.features.notification.NotificationActivity
+import com.example.easysend.features.point.PointActivity
+import com.example.easysend.features.point.PointProcessActivity
 import com.example.easysend.features.profile.ProfileEditActivity
+import com.example.easysend.features.rating.RatingActivity
 import com.example.easysend.features.shared.DetailOrderActiveActivity
 import com.example.easysend.features.shared.DetailOrderDoneActivity
 import dagger.Module
@@ -29,6 +32,15 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributePointActivity(): PointActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributePointProcessActivity(): PointProcessActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeRatingActivity(): RatingActivity
 
     @ContributesAndroidInjector
     abstract fun contributeSplashActivity(): SplashActivity

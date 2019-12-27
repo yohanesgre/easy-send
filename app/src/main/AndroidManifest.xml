@@ -35,6 +35,9 @@
         <activity android:name=".features.darurat.DaruratDeliveryActivity"/>
         <activity android:name=".features.notification.NotificationActivity" />
         <activity android:name=".features.profile.ProfileEditActivity"/>
+        <activity android:name=".features.point.PointActivity"/>
+        <activity android:name=".features.rating.RatingActivity"/>
+        <activity android:name=".features.point.PointProcessActivity"/>
     </application>
 
 </manifest>

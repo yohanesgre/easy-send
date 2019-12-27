@@ -16,7 +16,9 @@
                 android:id="@+id/title_notif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Waktu anda kurang dari 2jam untuk memulai kegiatan"/>
+                android:text="Waktu anda kurang dari 2jam untuk memulai kegiatan"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/content_notif"
                 android:layout_width="match_parent"

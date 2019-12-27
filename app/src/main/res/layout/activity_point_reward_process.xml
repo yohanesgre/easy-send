@@ -15,7 +15,8 @@
             android:padding="20dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/text_fasilitas_darurat"
+            android:text="Permintaan anda akan segera kami proses.
+Pihak kami akan memverifikasi permintaan anda melalui telephone. Pastikan HP anda dalam keadaan hidup."
             android:layout_marginHorizontal="50dp"
             android:textColor="@color/white"
             android:textStyle="bold"

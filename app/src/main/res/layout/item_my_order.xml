@@ -18,14 +18,19 @@
                         android:id="@+id/output_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="19/12/2020 10:10" />
+                        tools:text="19/12/2020 10:10"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato"/>
                     <TextView
                         android:id="@+id/btn_lihat_detil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lihat Detail"
                         android:textColor="@color/colorPrimary"
-                        android:layout_gravity="end"/>
+                        android:layout_gravity="end"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato"/>
                 </androidx.coordinatorlayout.widget.CoordinatorLayout>
                 <TextView
                     android:id="@+id/output_origin"
@@ -34,6 +39,9 @@
                     tools:text="Jl. Pasar Turi"
                     android:layout_marginVertical="5dp"
                     android:drawableLeft="@drawable/ic_location_origin_small"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato"
                     android:drawablePadding="10dp"/>
                 <TextView
                     android:id="@+id/output_destination"
@@ -42,6 +50,9 @@
                     android:layout_marginVertical="5dp"
                     tools:text="Jl. Terusan Buahbatu"
                     android:drawableLeft="@drawable/ic_location_small"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato"
                     android:drawablePadding="10dp"/>
             </LinearLayout>
             <Button
