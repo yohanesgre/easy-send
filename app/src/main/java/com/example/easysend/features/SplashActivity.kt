@@ -1,36 +1,30 @@
 package com.example.easysend.features
 
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.easysend.R
+import com.example.easysend.databinding.ActivitySplashBinding
 import com.example.easysend.di.Injectable
+import com.example.easysend.features.login.LoginActivity
 
 class SplashActivity : AppCompatActivity(), Injectable {
 
     /*@Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: LoginViewModel*/
-/*
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = injectViewModel(viewModelFactory)
-        val binding: ActivityAuthSplashBinding =
+        val binding: ActivitySplashBinding =
             DataBindingUtil.setContentView(
                 this,
-                R.layout.activity_auth_splash
+                R.layout.activity_splash
             )
-        viewModel.getProfile.observe(this, Observer {
-            Handler().postDelayed({
-                if (it != null) {
-                    println("UserID: ${it.id}")
-                    val intent = Intent(this, MainActivity::class.java).apply {
-                        putExtra("UserID", it.id)
-                    }
-                    startActivity(intent)
-                } else {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                finish()
-            }, 2000L)
-        })
-    }*/
+        Handler().postDelayed({
+           startActivity(Intent(this, LoginActivity::class.java))
+        }, 3000L)
+    }
 }

@@ -1,63 +1,45 @@
-/*
- * Copyright (C) 2018 skydoves
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.easysend.features.komisi.adapter
 
-import android.content.res.Resources
-import android.view.View
-import com.example.easysend.R
-import com.example.easysend.features.komisi.adapter.viewholder.KomisiHeaderViewHolder
-import com.example.easysend.features.komisi.adapter.viewholder.KomisiViewHolder
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.RecyclerView
+import com.example.easysend.databinding.ItemKomisiBinding
+import com.example.easysend.extentions.formatDateTime
 import com.example.easysend.features.komisi.data.model.KomisiItem
-import com.skydoves.baserecyclerviewadapter.BaseAdapter
-import com.skydoves.baserecyclerviewadapter.BaseViewHolder
-import com.skydoves.baserecyclerviewadapter.SectionRow
 
-@Suppress("LiftReturnOrAssignment")
-class KomisiAdapter(private val delegate: KomisiViewHolder.Delegate)
-  : BaseAdapter() {
+class KomisiAdapter(private var listItem:List<KomisiItem>) : RecyclerView.Adapter<KomisiAdapter.ViewHolder>() {
 
-  /*init {
-    for (i in 0..5) {
-      addSection(ArrayList<Any>())
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ItemKomisiBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false)
+        )
     }
-  }*/
 
-  fun addSections(sections: Int){
-    for (i in 0..sections) addSection(ArrayList<Any>())
-  }
-
-  fun addItems(section: Int, items: List<KomisiItem>) {
-    addItemOnSection(section, "Minggu $section")
-    addItemListOnSection(section, items)
-    notifyDataSetChanged()
-  }
-
-  override fun layout(sectionRow: SectionRow): Int {
-    when (sectionRow.row) {
-      0 -> return R.layout.item_komisi_header
-      else -> return R.layout.item_komisi
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = listItem[position]
+        holder.bind(item)
     }
-  }
-
-  override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-    when (layout) {
-      R.layout.item_komisi_header -> return KomisiHeaderViewHolder(view)
-      R.layout.item_komisi -> return KomisiViewHolder(view, delegate)
+    inner class ViewHolder (
+        private val binding : ItemKomisiBinding
+    ) : RecyclerView.ViewHolder(binding.root){
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun bind(item: KomisiItem) {
+            binding.apply {
+                tvAlamatTujuan.text = item.tujuan
+                tvWaktuSampai.text = item.waktuSampai.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
+                tvKomisi.text = item.jumlah
+                executePendingBindings()
+            }
+        }
     }
-    throw Resources.NotFoundException("not founded layout")
-  }
+
+    override fun getItemCount(): Int = listItem.size
+
+    fun submitList(newList:List<KomisiItem>){
+        listItem = newList
+    }
 }

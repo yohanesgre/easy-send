@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tombolDarurat">
+        <item>"LAKA"</item>
+        <item>"Ban Pecah"</item>
+        <item>"Kendaraan Rusak"</item>
+        <item>"HP Low Bat"</item>
+        <item>"Lainnya"</item>
+    </string-array>
+</resources>

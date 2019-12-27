@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.example.easysend.R
 import com.example.easysend.databinding.FragmentHomeBinding
 import com.example.easysend.di.Injectable
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.home.adapter.RatingAdapter
+import com.example.easysend.features.notification.NotificationActivity
 
 
 class HomeFragment : Fragment(), Injectable {
@@ -47,10 +50,31 @@ class HomeFragment : Fragment(), Injectable {
             binding.layoutEmptyPesanan.visibility = View.GONE
             binding.layoutPesanan.visibility = View.VISIBLE
         }
+        binding.btnSimpan.setOnClickListener {
+            MaterialDialog(requireContext()).show {
+                icon(R.drawable.ic_warning)
+                message(text="Pesanan Anda akan tersimpan di Order Saya")
+                positiveButton(text = "OK"){
+                    dismiss()
+                }
+            }
+        }
         binding.btnMulai.setOnClickListener {
-            binding.layoutEmptyPesanan.visibility = View.VISIBLE
-            binding.layoutPesanan.visibility = View.GONE
-            startActivity(Intent(requireContext(), DeliveryActivity::class.java))
+            MaterialDialog(requireContext()).show {
+                icon(R.drawable.ic_warning)
+                message(text="Apa Anda yakin ingin memulai kegiatan?")
+                positiveButton(text = "YA"){
+                    binding.layoutEmptyPesanan.visibility = View.VISIBLE
+                    binding.layoutPesanan.visibility = View.GONE
+                    startActivity(Intent(requireContext(), DeliveryActivity::class.java))
+                }
+                negativeButton(text="TIDAK") {
+                    dismiss()
+                }
+            }
+        }
+        binding.ivNotif.setOnClickListener {
+            startActivity(Intent(requireContext(), NotificationActivity::class.java))
         }
     }
     private fun subscribeUI(){

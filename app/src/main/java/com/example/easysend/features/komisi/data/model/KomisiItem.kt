@@ -19,5 +19,6 @@ package com.example.easysend.features.komisi.data.model
 data class KomisiItem(
   val tujuan: String,
   val waktuSampai: String,
-  val komisi: String
+  val jumlah: String,
+  val isKomisi: Boolean
 )

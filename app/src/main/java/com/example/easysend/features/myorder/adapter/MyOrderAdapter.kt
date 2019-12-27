@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.example.easysend.R
 import com.example.easysend.databinding.ItemMyOrderBinding
 import com.example.easysend.extentions.formatDateTime
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.myorder.data.model.Order
+import com.example.easysend.features.shared.DetailOrderActiveActivity
+import com.example.easysend.features.shared.DetailOrderDoneActivity
 
 class MyOrderAdapter(private var listItem:List<Order>) : RecyclerView.Adapter<MyOrderAdapter.ViewHolder>() {
 
@@ -34,9 +38,27 @@ class MyOrderAdapter(private var listItem:List<Order>) : RecyclerView.Adapter<My
             binding.apply {
                 if (item.finished){
                     btnMulai.visibility = View.GONE
+                    btnLihatDetil.setOnClickListener {
+                        root.context.startActivity(Intent(root.context, DetailOrderDoneActivity::class.java))
+                    }
+                }else{
+                    btnLihatDetil.setOnClickListener {
+                        root.context.startActivity(Intent(root.context, DetailOrderActiveActivity::class.java))
+                    }
                 }
                 btnMulai.setOnClickListener {
-                    root.context.startActivity(Intent(root.context, DeliveryActivity::class.java))
+                    binding.btnMulai.setOnClickListener {
+                        MaterialDialog(binding.root.context).show {
+                            icon(R.drawable.ic_warning)
+                            message(text="Apa Anda yakin ingin memulai kegiatan?")
+                            positiveButton(text = "YA"){
+                                root.context.startActivity(Intent(binding.root.context, DeliveryActivity::class.java))
+                            }
+                            negativeButton(text="TIDAK") {
+                                dismiss()
+                            }
+                        }
+                    }
                 }
                 outputDate.text = item.date.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
                 outputOrigin.text = item.origin

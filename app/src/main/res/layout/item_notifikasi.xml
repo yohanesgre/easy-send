@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/layout_notif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="10dp">
+            <TextView
+                android:id="@+id/title_notif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waktu anda kurang dari 2jam untuk memulai kegiatan"/>
+            <TextView
+                android:id="@+id/content_notif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12:00, 19/10/2010, No. Order 10982\n
+Jalan Surato Sari, Jakarta - Jalan Rungkut 23 Surabaya "/>
+        </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/underline_grey" />
+    </LinearLayout>
+</layout>

@@ -18,19 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.login.LoginActivity">
+        <activity android:name=".features.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".features.login.LoginActivity"/>
         <activity android:name=".features.MainActivity"/>
         <activity android:name="com.example.easysend.features.delivery.DeliveryActivity"/>
         <activity android:name="com.example.easysend.features.delivery.view.UploadBiayaTambahanFragment"/>
         <activity android:name="com.example.easysend.features.delivery.view.UploadSuratJalanFragment"/>
         <activity android:name=".features.shared.DetailOrderActiveActivity"/>
         <activity android:name=".features.shared.DetailOrderDoneActivity"/>
+        <activity android:name=".features.darurat.DaruratDeliveryActivity"/>
+        <activity android:name=".features.notification.NotificationActivity" />
+        <activity android:name=".features.profile.ProfileEditActivity"/>
     </application>
 
 </manifest>

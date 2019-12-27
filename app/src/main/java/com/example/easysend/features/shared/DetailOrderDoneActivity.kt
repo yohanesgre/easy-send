@@ -17,6 +17,10 @@ class DetailOrderDoneActivity : AppCompatActivity(), Injectable{
         super.onCreate(savedInstanceState)
         orderId = intent.getIntExtra("orderId", 0)
         val binding:ActivityDeliveryDetailDoneBinding = DataBindingUtil.setContentView(this, R.layout.activity_delivery_detail_done)
+        binding.toolbar.title="Detail Order"
+        setSupportActionBar(binding.toolbar)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         binding.btnDetilOrder.setOnClickListener {
             startActivity(Intent(this, DeliveryActivity::class.java))
         }

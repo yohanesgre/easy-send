@@ -4,38 +4,51 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.easysend.MockSamples
 import com.example.easysend.databinding.FragmentKomisiBinding
 import com.example.easysend.di.Injectable
-import com.example.easysend.features.komisi.adapter.KomisiAdapter
-import com.example.easysend.features.komisi.adapter.viewholder.KomisiViewHolder
-import com.example.easysend.features.komisi.data.model.KomisiItem
-import com.google.android.material.snackbar.Snackbar
+import com.example.easysend.features.komisi.adapter.KomisiPagerFragmentAdapter
+import com.example.easysend.features.myorder.adapter.ACTIVE_FRAGMENT_INDEX
+import com.example.easysend.features.myorder.adapter.ARCHIVED_FRAGMENT_INDEX
+import com.google.android.material.tabs.TabLayoutMediator
 
-class KomisiFragment : Fragment(), Injectable, KomisiViewHolder.Delegate{
+class KomisiFragment : Fragment(), Injectable {
 
-    private val adapter by lazy{KomisiAdapter(this)}
-    private lateinit var binding:FragmentKomisiBinding
+    private var userId: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userId = arguments?.getInt("UserID") ?: 0
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentKomisiBinding.inflate(inflater, container, false)
-        binding.rvKomisi.adapter = adapter
-        binding.rvKomisi.layoutManager =LinearLayoutManager(requireContext())
+        val binding = FragmentKomisiBinding.inflate(inflater, container, false)
+        context?: return binding.root
+        val tabLayout = binding.tabs
+        val viewPager = binding.viewPager
+        binding.toolbar.title = "Komisi"
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        viewPager.adapter =
+            KomisiPagerFragmentAdapter(
+                this
+            )
 
-        adapter.addSections(5)
-        for (i in 0..5){
-            adapter.addItems(i, MockSamples.mockKomisiItems(requireContext(), 5))
-        }
+        TabLayoutMediator(tabLayout, viewPager) {tabs, position->
+            tabs.text = getTabTitle(position)
+        }.attach()
         return binding.root
     }
 
-    override fun onItemClick(komisiItem: KomisiItem) {
-        Snackbar.make(binding.root, komisiItem.tujuan, Snackbar.LENGTH_SHORT).show()
+    private fun getTabTitle(position: Int): String? {
+        return when (position) {
+            ACTIVE_FRAGMENT_INDEX -> "Komisi"
+            ARCHIVED_FRAGMENT_INDEX -> "Cashbon"
+            else -> null
+        }
     }
 }

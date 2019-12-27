@@ -1,9 +1,11 @@
 package com.example.easysend.di
 
 import com.example.easysend.features.home.view.HomeFragment
+import com.example.easysend.features.komisi.view.KomisiChildFragment
 import com.example.easysend.features.komisi.view.KomisiFragment
 import com.example.easysend.features.myorder.view.MyOrderChildFragment
 import com.example.easysend.features.myorder.view.MyOrderFragment
+import com.example.easysend.features.profile.ProfileFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -20,4 +22,10 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeKomisiFragment(): KomisiFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeKomisiChildFragment(): KomisiChildFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeProfileFragment(): ProfileFragment
 }

@@ -1,6 +1,7 @@
 package com.example.easysend.features.delivery.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.example.easysend.R
 import com.example.easysend.databinding.FragmentDeliveryBinding
 import com.example.easysend.di.Injectable
 import com.example.easysend.extentions.dpToPx
 import com.example.easysend.extentions.getColorCompat
+import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.adapter.TimelineAdapter
 import com.github.vipulasri.timelineview.TimelineView
 import com.github.vipulasri.timelineview.sample.model.OrderStatus
@@ -129,6 +133,14 @@ class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
             }
             bottomSheetLayout.bottomSheetContent.layoutSampaiGarasi.btnSampaiGarasi.setOnClickListener {
                 root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
+            }
+            val myItems = listOf("LAKA", "Ban Pecah", "Kendaraan Rusak", "HP Lowbat", "Lainnya")
+            bottomSheetLayout.bottomSheetContent.btnEmergency.setOnClickListener{
+                MaterialDialog(requireContext()).show {
+                    listItems(items = myItems) { dialog, index, text ->
+                        startActivity(Intent(requireActivity(), DaruratDeliveryActivity::class.java))
+                    }
+                }
             }
         }
         tlAttributes.orientation = Orientation.VERTICAL

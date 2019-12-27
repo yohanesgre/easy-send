@@ -46,8 +46,8 @@ class MyOrderFragment : Fragment(), Injectable {
 
     private fun getTabTitle(position: Int): String? {
         return when (position) {
-            ACTIVE_FRAGMENT_INDEX -> "ACTIVE"
-            ARCHIVED_FRAGMENT_INDEX -> "ARCHIVED"
+            ACTIVE_FRAGMENT_INDEX -> "Booked"
+            ARCHIVED_FRAGMENT_INDEX -> "Finished"
             else -> null
         }
     }

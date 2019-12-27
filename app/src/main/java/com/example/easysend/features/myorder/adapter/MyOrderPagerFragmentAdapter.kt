@@ -16,7 +16,7 @@ class MyOrderPagerFragmentAdapter(fragment: Fragment) :
                 arguments = Bundle().apply {
                     putInt(
                         MyOrderChildFragment.POSITION_KEY,
-                        ARCHIVED_FRAGMENT_INDEX
+                        ACTIVE_FRAGMENT_INDEX
                     )
                 }
             }
@@ -26,7 +26,7 @@ class MyOrderPagerFragmentAdapter(fragment: Fragment) :
                 arguments = Bundle().apply {
                     putInt(
                         MyOrderChildFragment.POSITION_KEY,
-                        ACTIVE_FRAGMENT_INDEX
+                        ARCHIVED_FRAGMENT_INDEX
                     )
                 }
             }

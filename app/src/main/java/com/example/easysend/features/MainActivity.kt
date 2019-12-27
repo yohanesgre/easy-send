@@ -12,6 +12,7 @@ import com.example.easysend.databinding.ActivityMainBinding
 import com.example.easysend.features.home.view.HomeFragment
 import com.example.easysend.features.komisi.view.KomisiFragment
 import com.example.easysend.features.myorder.view.MyOrderFragment
+import com.example.easysend.features.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -67,6 +68,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector{
             R.id.fragment_finance->{
                 lastFragmentTag = itemId
                 KomisiFragment()
+            }
+            R.id.fragment_profile->{
+                lastFragmentTag = itemId
+                ProfileFragment()
             }
             else -> {
                 null
