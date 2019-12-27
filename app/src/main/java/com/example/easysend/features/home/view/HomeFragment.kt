@@ -88,7 +88,7 @@ class HomeFragment : Fragment(), Injectable {
                     }
                 }
         }
-        binding.rvRating.setOnClickListener {
+        binding.layoutRatingStar.setOnClickListener {
             startActivity(Intent(requireContext(), RatingActivity::class.java))
         }
         binding.layoutPointInfo.setOnClickListener {
