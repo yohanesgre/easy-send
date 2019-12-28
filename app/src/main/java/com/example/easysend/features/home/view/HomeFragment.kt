@@ -18,6 +18,7 @@ import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.home.adapter.RatingAdapter
 import com.example.easysend.features.notification.NotificationActivity
 import com.example.easysend.features.point.PointActivity
+import com.example.easysend.features.profile.ProfileEditActivity
 import com.example.easysend.features.rating.RatingActivity
 
 
@@ -87,6 +88,9 @@ class HomeFragment : Fragment(), Injectable {
                         startActivity(Intent(requireActivity(), DaruratDeliveryActivity::class.java))
                     }
                 }
+        }
+        binding.tvLblEditProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), ProfileEditActivity::class.java))
         }
         binding.layoutRatingStar.setOnClickListener {
             startActivity(Intent(requireContext(), RatingActivity::class.java))

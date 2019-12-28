@@ -15,6 +15,7 @@
 
     <color name="bg_grey">#BFF4F4F4</color>
     <color name="bg_grey_100">#F4F4F4</color>
+    <color name="bg_grey_50">#99F4F4F4</color>
     <color name="underline_grey">#ADB6C4</color>
 
     <color name="light_blue">#00A6FF</color>
