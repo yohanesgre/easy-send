@@ -5,6 +5,7 @@ import com.example.easysend.features.komisi.view.KomisiChildFragment
 import com.example.easysend.features.komisi.view.KomisiFragment
 import com.example.easysend.features.myorder.view.MyOrderChildFragment
 import com.example.easysend.features.myorder.view.MyOrderFragment
+import com.example.easysend.features.onboarding.OnboardingFragment
 import com.example.easysend.features.profile.ProfileFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -28,4 +29,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment(): ProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeOnboardingFragment(): OnboardingFragment
 }

@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity(), Injectable{
         val binding:ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.btnMasuk.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }

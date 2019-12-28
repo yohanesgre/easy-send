@@ -116,7 +116,6 @@
 
                             <include layout="@layout/item_rating_empty"
                                 android:id="@+id/layout_rating_empty"/>
-
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_rating"
                                 android:layout_width="match_parent"
@@ -126,7 +125,8 @@
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 tools:itemCount="5"
                                 tools:listitem="@layout/item_rating"
-                                tools:orientation="horizontal" />
+                                tools:orientation="horizontal"
+                                android:layout_gravity="center"/>
                         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
                         <androidx.coordinatorlayout.widget.CoordinatorLayout

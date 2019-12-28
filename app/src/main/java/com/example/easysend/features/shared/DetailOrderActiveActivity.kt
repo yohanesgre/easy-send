@@ -21,6 +21,7 @@ class DetailOrderActiveActivity : AppCompatActivity(), Injectable{
 
         binding.btnMulai.setOnClickListener {
             startActivity(Intent(this, DeliveryActivity::class.java))
+            finish()
         }
 
         binding.btnMulai.setOnClickListener {
@@ -29,6 +30,7 @@ class DetailOrderActiveActivity : AppCompatActivity(), Injectable{
                 message(text="Apa Anda yakin ingin memulai kegiatan?")
                 positiveButton(text = "YA"){
                     startActivity(Intent(this@DetailOrderActiveActivity, DeliveryActivity::class.java))
+                    finish()
                 }
                 negativeButton(text="TIDAK") {
                     dismiss()

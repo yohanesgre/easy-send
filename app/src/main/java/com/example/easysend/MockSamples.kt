@@ -29,7 +29,7 @@ class MockSamples {
           KomisiItem(
             "Tujuan $i",
             "Waktu Sampai $i",
-            "Komisi $i",
+            0.0,
             false
           )
         )

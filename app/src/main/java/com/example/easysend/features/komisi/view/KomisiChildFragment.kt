@@ -11,19 +11,31 @@ import com.example.easysend.databinding.FragmentKomisiChildBinding
 import com.example.easysend.di.Injectable
 import com.example.easysend.features.komisi.adapter.KomisiAdapter
 import com.example.easysend.features.komisi.data.model.KomisiItem
+import com.example.easysend.utils.ConvertToCurrency
 
 
 class KomisiChildFragment : Fragment(), Injectable, View.OnClickListener {
     private var position: Int = 0
-
+    val list = arrayListOf<KomisiItem>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, state: Bundle?): View? {
         position = arguments?.getInt(POSITION_KEY) ?: 0
         val binding = FragmentKomisiChildBinding
             .inflate(inflater, container, false)
-        val list = arrayListOf<KomisiItem>()
         if (position == 0){
-                list.add(KomisiItem("Jalan Surato Sari, Jakarta", "2019-12-12 07:00", "Rp. 500.000,-", true))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 500000.0, true))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 200000.0, true))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 600000.0, true))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 400000.0, true))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 700000.0, true))
+        }else{
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 500000.0, false))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 200000.0, false))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 600000.0, false))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 400000.0, false))
+            list.add(KomisiItem("Jalan Surato Sari, Jakarta", "10/11/2019 07:00 WIB", 700000.0, false))
         }
+        calculateKomisi()
+        binding.totalKomisi.text = ConvertToCurrency(calculateKomisi(), null)
         val adapter =
             KomisiAdapter(list)
         binding.rvContentBookings.apply {
@@ -31,6 +43,14 @@ class KomisiChildFragment : Fragment(), Injectable, View.OnClickListener {
             this.adapter = adapter
         }
         return binding.root
+    }
+
+    private fun calculateKomisi():Double{
+        var total = 0.0
+        (0 until list.size).forEach { i->
+            total += list[i].jumlah
+        }
+        return total
     }
 
     override fun onClick(v: View) {

@@ -40,17 +40,6 @@
                         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                         android:layout_gravity="right"/>
                 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/activity_vertical_margin">
-                    <include layout="@layout/layout_timeline"
-                        android:id="@+id/timeline"/>
-                </FrameLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/underline_grey" />
                 <include layout="@layout/bottom_sheet_content_surat_jalan"
                     android:id="@+id/content_surat_jalan" />
                 <View
@@ -58,48 +47,63 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="@color/underline_grey"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/activity_vertical_margin">
+                    <include layout="@layout/layout_timeline"
+                        android:id="@+id/timeline"/>
+                </FrameLayout>
                 <!-- Nota Biaya Tambahan -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
                         android:layout_marginRight="10dp"
                         android:text="Nota Biaya Tambahan" />
                     <TextView
                         android:id="@+id/btn_biaya_tambahan_lihat"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
                         android:background="@drawable/bg_border_all_10_round_green"
-                        android:paddingHorizontal="10dp"
+                        android:paddingHorizontal="5dp"
                         android:paddingVertical="2dp"
                         android:text="Lihat"
+                        android:textAlignment="center"
                         android:textColor="@color/white"/>
                 </LinearLayout>
                 <!-- Surat Jalan -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
                         android:layout_marginRight="10dp"
                         android:text="Surat Jalan" />
                     <TextView
                         android:id="@+id/btn_surat_jalan_lihat"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
                         android:background="@drawable/bg_border_all_10_round_green"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="2dp"
                         android:text="Lihat"
+                        android:textAlignment="center"
                         android:textColor="@color/white"/>
                 </LinearLayout>
             </LinearLayout>

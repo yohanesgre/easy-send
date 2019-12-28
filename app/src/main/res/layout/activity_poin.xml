@@ -45,7 +45,7 @@
                         android:id="@+id/layout_point_info"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@drawable/bg_border_green_all_10_round_grey"
+                        android:background="@drawable/bg_border_all_20_round_grey"
                         android:paddingVertical="5dp"
                         android:paddingHorizontal="10sp"
                         android:layout_marginEnd="20dp"

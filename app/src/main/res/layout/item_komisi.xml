@@ -12,44 +12,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="10dp"
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Alamat Tujuan: "/>
-                <TextView
-                    android:id="@+id/tv_alamat_tujuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    tools:text="Jalan Surato sari, Jakarta"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Waktu Sampai: "/>
-                <TextView
-                    android:id="@+id/tv_waktu_sampai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    tools:text="10/11/2019 07:00 WIB"/>
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,14 +24,48 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
+                    android:text="Alamat Tujuan: "/>
+                <TextView
+                    android:id="@+id/tv_alamat_tujuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    tools:text="Jalan Surato sari, Jakarta"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Waktu Sampai: "/>
+                <TextView
+                    android:id="@+id/tv_waktu_sampai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    tools:text="10/11/2019 07:00 WIB"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:text="Komisi: "/>
+                    android:text="Komisi "/>
                 <TextView
                     android:id="@+id/tv_komisi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:gravity="end"
                     android:textStyle="bold"
                     tools:text="Rp. 500.000"/>
@@ -74,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_marginTop="3dp"
-            android:background="@android:color/black"
-            android:layout_marginHorizontal="5dp"/>
+            android:background="@color/underline_grey"
+            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
 </layout>

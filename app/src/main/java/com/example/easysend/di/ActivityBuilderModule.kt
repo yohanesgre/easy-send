@@ -6,6 +6,8 @@ import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.login.LoginActivity
 import com.example.easysend.features.notification.NotificationActivity
+import com.example.easysend.features.onboarding.OnboardingActivity
+import com.example.easysend.features.onboarding.PilihAkunActivity
 import com.example.easysend.features.point.PointActivity
 import com.example.easysend.features.point.PointProcessActivity
 import com.example.easysend.features.profile.ProfileEditActivity
@@ -23,6 +25,9 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector(modules = [DeliveryFragmentBuildersModule::class])
     abstract fun contributeDeliveryActivity(): DeliveryActivity
+
+    @ContributesAndroidInjector(modules = [OnboardingFragmentBuildersModule::class])
+    abstract fun contributeOnboardingActivity(): OnboardingActivity
 
     @ContributesAndroidInjector
     abstract fun contributeDetailOrderActiveActivity(): DetailOrderActiveActivity
@@ -53,6 +58,9 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeDaruratDeliveryActivity(): DaruratDeliveryActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributePilihAkunActivity(): PilihAkunActivity
 /*
     @ContributesAndroidInjector
     abstract fun contributeLoginActivity(): LoginActivity

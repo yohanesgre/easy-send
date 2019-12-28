@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="50dp"
+        android:clipToPadding="false">
+        <ImageView
+            android:id="@+id/image_onboarding"
+            android:src="@drawable/ic_onboarding_komisi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/title_onboarding"/>
+        <TextView
+            android:id="@+id/title_onboarding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Komisi"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="34sp"
+            android:textColor="@color/text_onboarding_title"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/body_onboarding"/>
+        <TextView
+            android:id="@+id/body_onboarding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_all_10_round_green_onboarding"
+            android:padding="15dp"
+            android:text="Nikmati kemudahan pencairan komisi dengan cepat"
+            android:textColor="@color/text_onboarding_body"
+            android:textSize="20sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,6 +1,7 @@
 package com.example.easysend.features.delivery.view
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.location.Location
 import android.os.Bundle
@@ -132,7 +133,7 @@ class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
                 root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToLihatSuratJalanFragment())
             }
             bottomSheetLayout.bottomSheetContent.layoutSampaiGarasi.btnSampaiGarasi.setOnClickListener {
-                root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
+                showDialog()
             }
             val myItems = listOf("LAKA", "Ban Pecah", "Kendaraan Rusak", "HP Lowbat", "Lainnya")
             bottomSheetLayout.bottomSheetContent.btnEmergency.setOnClickListener{
@@ -425,4 +426,20 @@ class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
             })
     }
 
+    fun showDialog() {
+        val dialog = SignatureDialogFragment()
+        dialog.setTargetFragment(this@DeliveryFragment, 100)
+        dialog.show(fragmentManager!!, this@DeliveryFragment.tag)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK){
+            return
+        } else  if( requestCode == 100 ) {
+            val greeting = data!!.getStringExtra("MESSAGE")
+            Snackbar.make(binding.root, greeting, Snackbar.LENGTH_SHORT).show()
+            binding.root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
+        }
+    }
 }

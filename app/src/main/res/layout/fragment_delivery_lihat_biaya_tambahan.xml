@@ -6,7 +6,7 @@
         android:layout_height="match_parent">
         <include android:id="@+id/app_bar_layout"
             layout="@layout/app_bar_layout"/>
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -87,6 +87,6 @@
                 </LinearLayout>
                 <!-- Button -->
             </LinearLayout>
-        </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

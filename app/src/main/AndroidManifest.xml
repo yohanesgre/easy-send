@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -38,6 +39,8 @@
         <activity android:name=".features.point.PointActivity"/>
         <activity android:name=".features.rating.RatingActivity"/>
         <activity android:name=".features.point.PointProcessActivity"/>
+        <activity android:name=".features.onboarding.OnboardingActivity"/>
+        <activity android:name=".features.onboarding.PilihAkunActivity"/>
     </application>
 
 </manifest>

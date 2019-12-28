@@ -2,8 +2,10 @@ package com.example.easysend.features.notification.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easysend.R
 import com.example.easysend.databinding.ItemNotifikasiBinding
@@ -17,6 +19,7 @@ class NotificationAdapter(private var itemList:List<ItemNotification>) : Recycle
 
     override fun getItemCount(): Int = itemList.size
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(itemList[position])
     }
@@ -29,13 +32,14 @@ class NotificationAdapter(private var itemList:List<ItemNotification>) : Recycle
     inner class ViewHolder(
         private val binding:ItemNotifikasiBinding
     ):RecyclerView.ViewHolder(binding.root){
+        @RequiresApi(Build.VERSION_CODES.M)
         @SuppressLint("ResourceAsColor")
         fun bind(item:ItemNotification){
             binding.apply {
                 titleNotif.text = item.title
                 contentNotif.text = item.content
-                if (item.isRead){
-                    layoutNotif.setBackgroundColor(R.color.colorPrimary)
+                if (!item.isRead){
+                    layoutNotif.setBackgroundResource(R.color.colorPrimary70)
                 }
                 layoutNotif.setOnClickListener {
                     root.context.startActivity(Intent(root.context, DetailOrderActiveActivity::class.java))

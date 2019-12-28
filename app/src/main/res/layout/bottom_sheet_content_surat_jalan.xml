@@ -70,21 +70,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Dari"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                     <TextView
                         android:id="@+id/output_row_dari"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Dari"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                 </LinearLayout>
                 <!-- Row Tujuan -->
@@ -92,21 +94,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Tujuan"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                     <TextView
                         android:id="@+id/output_row_tujuan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Tujuan"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                 </LinearLayout>
                 <!-- Row Jenis Muatan -->
@@ -114,21 +118,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Jenis Muatan"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                     <TextView
                         android:id="@+id/output_row_jenis_muatan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Jenis Muatan"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                 </LinearLayout>
                 <!-- Row Estmasi Berat -->
@@ -136,21 +142,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Estimasi Berat"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                     <TextView
                         android:id="@+id/output_row_estimasi_berat"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Estimasi Berat"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                 </LinearLayout>
                 <!-- Row Kebutuhan Tambahan -->
@@ -158,43 +166,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Kebutuhan Tambahan"
                         android:padding="@dimen/textview_cell_padding"
-                        android:background="@drawable/bg_cell_grey_1dp"/>
+                        android:textSize="12sp"
+                        android:lines="2"
+                        android:background="@drawable/bg_cell_grey_1dp"
+                        android:gravity="center_vertical"/>
                     <TextView
                         android:id="@+id/output_row_kebutuhan_tambahan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Kebutuhan Tambahan"
                         android:padding="@dimen/textview_cell_padding"
-                        android:background="@drawable/bg_cell_grey_1dp"/>
+                        android:textSize="12sp"
+                        android:background="@drawable/bg_cell_grey_1dp"
+                        android:lines="2"/>
                 </LinearLayout>
                 <!-- Row Nomor Kontainer -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.85"
                         android:text="Nomor Kontainer"
                         android:padding="@dimen/textview_cell_padding"
-                        android:background="@drawable/bg_cell_grey_1dp"/>
+                        android:background="@drawable/bg_cell_grey_1dp"
+                        android:textSize="13sp"/>
                     <TextView
                         android:id="@+id/output_row_nomor_kontainer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.15"
-                        android:text="Nomor Kontainer"
                         android:padding="@dimen/textview_cell_padding"
+                        android:textSize="13sp"
                         android:background="@drawable/bg_cell_grey_1dp"/>
                 </LinearLayout>
                 <LinearLayout

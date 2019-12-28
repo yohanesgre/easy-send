@@ -31,8 +31,8 @@
                 android:paddingVertical="15dp">
                 <ImageView
                     android:id="@+id/profile_pict"
-                    android:layout_width="155dp"
-                    android:layout_height="155dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:background="@drawable/ic_circle_profile"/>
                 <TextView
                     android:id="@+id/btn_edit"

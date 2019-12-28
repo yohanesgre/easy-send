@@ -20,5 +20,8 @@
 
     <color name="light_blue">#00A6FF</color>
 
-    <color name="text_black">#47525E</color>
+    <color name="colorPrimary70">#B347c363</color>
+    <color name="text_onboarding_body">#FF36592E</color>
+    <color name="text_onboarding_title">#FF1F2D3D</color>
+    <color name="bg_onboarding">#FFAAFC9A</color>
 </resources>

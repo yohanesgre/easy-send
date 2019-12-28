@@ -28,10 +28,13 @@ class MyOrderAdapter(private var listItem:List<Order>) : RecyclerView.Adapter<My
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listItem[position]
+        if (position % 2 == 0){
+            holder.binding.layoutItemOrder.setBackgroundResource(R.color.bg_grey)
+        }
         holder.bind(item)
     }
     inner class ViewHolder (
-        private val binding : ItemMyOrderBinding
+        val binding : ItemMyOrderBinding
     ) : RecyclerView.ViewHolder(binding.root){
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: Order) {
@@ -62,6 +65,7 @@ class MyOrderAdapter(private var listItem:List<Order>) : RecyclerView.Adapter<My
                 }
                 outputDate.text = item.date.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
                 outputOrigin.text = item.origin
+                outputNoOrder.text = item.order
                 outputDestination.text = item.destination
                 executePendingBindings()
             }

@@ -22,9 +22,13 @@ class MyOrderChildFragment : Fragment(), Injectable, View.OnClickListener {
             .inflate(inflater, container, false)
         val list = arrayListOf<Order>()
         if (position == 0){
-                list.add(Order("2019-12-12 07:00", "Surabaya", "Jakarta", false))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", false))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", false))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", false))
         }else{
-            list.add(Order("2019-12-12 07:00", "Surabaya", "Bandung", true))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", true))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", true))
+            list.add(Order("2019-12-12 07:00", "Jl Pasar Turi 21 Surabaya", "No. Order ID1666788","Jl Terusan Buahbatu, Bandung", true))
         }
         val adapter =
             MyOrderAdapter(list)

@@ -27,4 +27,8 @@ abstract class DeliveryFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeLihatBiayaTambahanFragment(): LihatBiayaTambahanFragment
+
+
+    @ContributesAndroidInjector
+    abstract fun contributeSignatureDialogFragment(): SignatureDialogFragment
 }

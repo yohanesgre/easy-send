@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easysend.databinding.ItemKomisiBinding
-import com.example.easysend.extentions.formatDateTime
 import com.example.easysend.features.komisi.data.model.KomisiItem
+import com.example.easysend.utils.ConvertToCurrency
 
 class KomisiAdapter(private var listItem:List<KomisiItem>) : RecyclerView.Adapter<KomisiAdapter.ViewHolder>() {
 
@@ -30,8 +30,8 @@ class KomisiAdapter(private var listItem:List<KomisiItem>) : RecyclerView.Adapte
         fun bind(item: KomisiItem) {
             binding.apply {
                 tvAlamatTujuan.text = item.tujuan
-                tvWaktuSampai.text = item.waktuSampai.formatDateTime("yyyy-MM-dd HH:mm", "hh:mm a, dd-MMM-yyyy")
-                tvKomisi.text = item.jumlah
+                tvWaktuSampai.text = item.waktuSampai
+                tvKomisi.text = ConvertToCurrency(item.jumlah, null)
                 executePendingBindings()
             }
         }

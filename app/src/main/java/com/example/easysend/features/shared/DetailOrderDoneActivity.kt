@@ -37,6 +37,7 @@ class DetailOrderDoneActivity : AppCompatActivity(), Injectable{
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         binding.btnDetilOrder.setOnClickListener {
             startActivity(Intent(this, DeliveryActivity::class.java))
+            finish()
         }
         tlAttributes = TimelineAttributes(
             markerSize = dpToPx(20f),

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingVertical="@dimen/activity_vertical_margin">
+        <TextView
+            android:text="Tanda Tangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signature_pad"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:penColor="@android:color/black" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:hint="Nama"
+            app:boxBackgroundColor="@color/white">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_nama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_hapus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:layout_weight="1"
+                android:text="Hapus"
+                android:layout_marginEnd="10dp"/>
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="OK"
+                android:layout_marginStart="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
