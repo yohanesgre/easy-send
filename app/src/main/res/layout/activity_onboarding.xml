@@ -53,21 +53,23 @@
                 android:layout_gravity="center"/>
             <ImageView
                 android:id="@+id/btn_back"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_arrow_back"
                 android:tint="@color/colorPrimary"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:layout_gravity="center_vertical"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:scaleType="centerInside"/>
             <ImageView
                 android:id="@+id/btn_next"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_arrow_back"
                 android:tint="@color/colorPrimary"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:layout_gravity="right|center_vertical"
+                android:scaleType="centerInside"
                 android:rotation="180"/>
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

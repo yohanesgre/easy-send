@@ -1,9 +1,10 @@
 package com.example.easysend.features.delivery.view
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.example.easysend.extentions.dpToPx
 import com.example.easysend.extentions.getColorCompat
 import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.adapter.TimelineAdapter
+import com.example.easysend.utils.setLocalImage
 import com.github.vipulasri.timelineview.TimelineView
 import com.github.vipulasri.timelineview.sample.model.OrderStatus
 import com.github.vipulasri.timelineview.sample.model.Orientation
@@ -47,6 +49,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.io.File
 import java.lang.ref.WeakReference
 
 class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
@@ -133,8 +136,18 @@ class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
                 root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToLihatSuratJalanFragment())
             }
             bottomSheetLayout.bottomSheetContent.layoutSampaiGarasi.btnSampaiGarasi.setOnClickListener {
-                showDialog()
+                showDialog(100)
             }
+            bottomSheetLayout.bottomSheetContent.contentSuratJalan.btnTtdPembawa.setOnClickListener{
+                showDialog(101)
+            }
+            bottomSheetLayout.bottomSheetContent.contentSuratJalan.btnTtdPenerima.setOnClickListener{
+                showDialog(102)
+            }
+            bottomSheetLayout.bottomSheetContent.contentSuratJalan.btnTtdPengirim.setOnClickListener{
+                showDialog(103)
+            }
+
             val myItems = listOf("LAKA", "Ban Pecah", "Kendaraan Rusak", "HP Lowbat", "Lainnya")
             bottomSheetLayout.bottomSheetContent.btnEmergency.setOnClickListener{
                 MaterialDialog(requireContext()).show {
@@ -426,20 +439,48 @@ class DeliveryFragment : Fragment(), Injectable, PermissionsListener {
             })
     }
 
-    fun showDialog() {
+    fun showDialog(requestCode:Int) {
         val dialog = SignatureDialogFragment()
-        dialog.setTargetFragment(this@DeliveryFragment, 100)
+        dialog.setTargetFragment(this@DeliveryFragment, requestCode)
         dialog.show(fragmentManager!!, this@DeliveryFragment.tag)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_OK){
+        if (resultCode != RESULT_OK){
             return
-        } else  if( requestCode == 100 ) {
-            val greeting = data!!.getStringExtra("MESSAGE")
-            Snackbar.make(binding.root, greeting, Snackbar.LENGTH_SHORT).show()
-            binding.root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
+        }else{
+            when(requestCode){
+                100 ->{
+                    val uri = Uri.parse(data!!.getStringExtra("URI"))
+                    Snackbar.make(binding.root, uri.toString(), Snackbar.LENGTH_SHORT).show()
+                    binding.root.findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToDeliverySelesaiFragment())
+                }
+                101->{
+                    val uri = Uri.parse(data!!.getStringExtra("URI"))
+                    //Toast.makeText(requireContext(), "Getting Signature: $uri", Toast.LENGTH_SHORT).show()
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ivTtdPembawa.setLocalImage(
+                        File(uri.path)
+                    )
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ttdNamaPembawa.text = data.getStringExtra("NAME")
+                }
+                102->{
+                    val uri = Uri.parse(data!!.getStringExtra("URI"))
+                    //Toast.makeText(requireContext(), "Getting Signature: $uri", Toast.LENGTH_SHORT).show()
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ivTtdPenerima.setLocalImage(
+                        File(uri.path)
+                    )
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ttdNamaPenerima.text = data.getStringExtra("NAME")
+                }
+                103->{
+                    val uri = Uri.parse(data!!.getStringExtra("URI"))
+                    //Toast.makeText(requireContext(), "Getting Signature: $uri", Toast.LENGTH_SHORT).show()
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ivTtdPengirim.setLocalImage(
+                        File(uri.path)
+                    )
+                    binding.bottomSheetLayout.bottomSheetContent.contentSuratJalan.ttdNamaPengirim.text = data.getStringExtra("NAME")
+                }
+            }
         }
     }
 }

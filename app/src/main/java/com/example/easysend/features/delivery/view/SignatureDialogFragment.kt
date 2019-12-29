@@ -44,9 +44,9 @@ class SignatureDialogFragment : DialogFragment(), Injectable{
             if (binding.inputNama.text!!.isNotEmpty()){
                 val signatureBitmap = binding.signaturePad.signatureBitmap
                 if (addJpgSignatureToGallery(signatureBitmap)) {
-                    Toast.makeText(requireActivity(), "Signature saved into the Gallery", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Signature saved into the Gallery", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireActivity(), "Unable to store the signature", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Unable to store the signature", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -56,18 +56,21 @@ class SignatureDialogFragment : DialogFragment(), Injectable{
         return binding.root
     }
 
-    private fun sendResult(message: String) {
+    private fun sendResult(uri: String) {
         if (targetFragment == null) {
             return
         }
-        val intent= Intent().putExtra("MESSAGE", message)
+        val intent= Intent().apply{
+            putExtra("URI", uri)
+            putExtra("NAME", binding.inputNama.text.toString())
+        }
         targetFragment!!.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
         dismiss()
     }
 
     fun getAlbumStorageDir(albumName: String?): File? { // Get the directory for the user's public pictures directory.
         val file = File(
-            Environment.getExternalStoragePublicDirectory(
+            requireActivity().getExternalFilesDir(
                 Environment.DIRECTORY_PICTURES
             ), albumName
         )
@@ -94,7 +97,7 @@ class SignatureDialogFragment : DialogFragment(), Injectable{
         try {
             val photo = File(
                 getAlbumStorageDir("EasySend"),
-                String.format("Signature_%d.jpg", System.currentTimeMillis())
+                String.format("Signature_${binding.inputNama.text}_%d.jpg", System.currentTimeMillis())
             )
             saveBitmapToJPG(signature, photo)
             scanMediaFile(photo)
@@ -109,7 +112,7 @@ class SignatureDialogFragment : DialogFragment(), Injectable{
         val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
         val contentUri: Uri = Uri.fromFile(photo)
         mediaScanIntent.data = contentUri
-        this@SignatureDialogFragment.sendResult("Signature Dialog Fragment")
+        this@SignatureDialogFragment.sendResult(mediaScanIntent.data.toString())
     }
 
     override fun onRequestPermissionsResult(
