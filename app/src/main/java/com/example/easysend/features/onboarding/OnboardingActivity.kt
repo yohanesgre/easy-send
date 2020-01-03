@@ -12,12 +12,16 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.easysend.R
 import com.example.easysend.databinding.ActivityOnboardingBinding
+import com.example.easysend.di.UserCache
 import com.example.easysend.features.onboarding.adapter.OnboardingPagerFragmentAdapter
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class OnboardingActivity : AppCompatActivity(), HasSupportFragmentInjector {
+
+    @Inject
+    lateinit var userCache: UserCache
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -46,6 +50,7 @@ class OnboardingActivity : AppCompatActivity(), HasSupportFragmentInjector {
         })
         binding.btnNext.setOnClickListener {
             if (currentPage == binding.viewPager.adapter!!.itemCount-1){
+                userCache.putIsFirstTime(false)
                 startActivity(Intent(this, PilihAkunActivity::class.java))
                 //SharedPref.getInstance(applicationContext).setIsFirstLaunchToFalse()
                 finish()
@@ -59,6 +64,7 @@ class OnboardingActivity : AppCompatActivity(), HasSupportFragmentInjector {
             }
         }
         binding.btnLewati.setOnClickListener {
+            userCache.putIsFirstTime(false)
             startActivity(Intent(this, PilihAkunActivity::class.java))
             finish()
         }

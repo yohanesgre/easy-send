@@ -1,7 +1,6 @@
 package com.example.easysend.di
 
 import com.example.easysend.features.MainActivity
-import com.example.easysend.features.SplashActivity
 import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.login.LoginActivity
@@ -14,6 +13,7 @@ import com.example.easysend.features.profile.ProfileEditActivity
 import com.example.easysend.features.rating.RatingActivity
 import com.example.easysend.features.shared.DetailOrderActiveActivity
 import com.example.easysend.features.shared.DetailOrderDoneActivity
+import com.example.easysend.features.splash.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
