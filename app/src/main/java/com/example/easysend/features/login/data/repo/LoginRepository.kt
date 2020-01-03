@@ -6,7 +6,7 @@ import com.example.easysend.di.UserCache
 import com.example.easysend.features.login.data.datasource.LoginRemoteDataSource
 import com.example.easysend.network.api.Result
 import com.example.easysend.network.api.ResultResponse
-import com.example.easysend.network.response.LoginResponse
+import com.example.easysend.network.response.login.LoginResponse
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import javax.inject.Inject

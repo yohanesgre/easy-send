@@ -1,10 +1,11 @@
 package com.example.easysend.features.delivery.adapter
 
-import android.os.Build
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easysend.R
 import com.example.easysend.databinding.ItemTimelineBinding
@@ -17,7 +18,6 @@ import com.github.vipulasri.timelineview.sample.model.TimeLineModel
 import com.github.vipulasri.timelineview.sample.model.TimelineAttributes
 import com.github.vipulasri.timelineview.sample.utils.VectorDrawableUtils
 
-/*
 class TimelineAdapter(private var tlAttributes: TimelineAttributes) : ListAdapter<TimeLineModel, TimelineAdapter.ViewHolder>(TimeLineModelNewDiffCallback()){
     override fun getItemViewType(position: Int): Int {
         return TimelineView.getTimeLineViewType(position, itemCount)
@@ -83,8 +83,8 @@ private class TimeLineModelNewDiffCallback : DiffUtil.ItemCallback<TimeLineModel
     override fun areContentsTheSame(oldItem: TimeLineModel, newItem: TimeLineModel): Boolean {
         return oldItem == newItem
     }
-}*/
-
+}
+/*
 class TimelineAdapter(private var listItem: List<TimeLineModel>,
                       private var tlAttributes: TimelineAttributes) : RecyclerView.Adapter<TimelineAdapter.ViewHolder>(){
     override fun getItemViewType(position: Int): Int {
@@ -149,4 +149,4 @@ class TimelineAdapter(private var listItem: List<TimeLineModel>,
             timeline.lineStyleDashGap = tlAttributes.lineDashGap
         }
     }
-}
+}*/

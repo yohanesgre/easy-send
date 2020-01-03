@@ -2,31 +2,41 @@ package com.example.easysend.features.home.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.example.easysend.R
 import com.example.easysend.databinding.FragmentHomeBinding
 import com.example.easysend.di.Injectable
+import com.example.easysend.di.injectViewModel
 import com.example.easysend.features.darurat.DaruratDeliveryActivity
 import com.example.easysend.features.delivery.DeliveryActivity
 import com.example.easysend.features.home.adapter.RatingAdapter
+import com.example.easysend.features.home.viewmodel.HomeViewModel
 import com.example.easysend.features.notification.NotificationActivity
 import com.example.easysend.features.point.PointActivity
 import com.example.easysend.features.profile.ProfileEditActivity
 import com.example.easysend.features.rating.RatingActivity
+import com.example.easysend.network.api.Result
+import com.example.easysend.network.response.order.OrderResponse
+import com.example.easysend.network.response.profile.ProfileResponse
+import com.google.gson.Gson
+import javax.inject.Inject
 
 
 class HomeFragment : Fragment(), Injectable {
-    /*
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: HomeViewModel*/
+    private lateinit var viewModel: HomeViewModel
 
     private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
@@ -34,7 +44,7 @@ class HomeFragment : Fragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?{
-       // viewModel = injectViewModel(viewModelFactory)
+        viewModel = injectViewModel(viewModelFactory)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         initUI()
         subscribeUI()
@@ -69,9 +79,11 @@ class HomeFragment : Fragment(), Injectable {
                 icon(R.drawable.ic_warning)
                 message(text="Apa Anda yakin ingin memulai kegiatan?")
                 positiveButton(text = "YA"){
-                    binding.layoutEmptyPesanan.visibility = View.VISIBLE
-                    binding.layoutPesanan.visibility = View.GONE
-                    startActivity(Intent(requireContext(), DeliveryActivity::class.java))
+                    //binding.layoutEmptyPesanan.visibility = View.VISIBLE
+                   // binding.layoutPesanan.visibility = View.GONE
+                    startActivity(Intent(requireContext(), DeliveryActivity::class.java).apply {
+                        putExtra("OrderId", viewModel.selectedOrderId)
+                    })
                 }
                 negativeButton(text="TIDAK") {
                     dismiss()
@@ -83,11 +95,11 @@ class HomeFragment : Fragment(), Injectable {
         }
         binding.btnEmergency.setOnClickListener {
             val myItems = listOf("LAKA", "Ban Pecah", "Kendaraan Rusak", "HP Lowbat", "Lainnya")
-                MaterialDialog(requireContext()).show {
-                    listItems(items = myItems) { dialog, index, text ->
-                        startActivity(Intent(requireActivity(), DaruratDeliveryActivity::class.java))
-                    }
+            MaterialDialog(requireContext()).show {
+                listItems(items = myItems) { dialog, index, text ->
+                    startActivity(Intent(requireActivity(), DaruratDeliveryActivity::class.java))
                 }
+            }
         }
         binding.tvLblEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(), ProfileEditActivity::class.java))
@@ -99,20 +111,88 @@ class HomeFragment : Fragment(), Injectable {
             startActivity(Intent(requireContext(), PointActivity::class.java))
         }
     }
-    private fun subscribeUI(){
 
+    private fun subscribeUI(){
+        subscribeProfile()
+        subscribeOrderTerbaru()
     }
 
-    private fun showAlertDevelopment() {
-        val alertDialog = AlertDialog.Builder(requireActivity())
-        alertDialog.setTitle("Sedang dalam Pengembangan")
-            .setMessage("Silakan gunakan fitur lain yang ada...")
-            .setCancelable(true)
-            .setPositiveButton("OK") { dialog, id ->
-                dialog.dismiss()
+    private fun subscribeOrderTerbaru(){
+        viewModel.resultOrderTerbaru.observe(viewLifecycleOwner){result->
+            when(result.status){
+                Result.Status.SUCCESS->{
+                    val gson = Gson()
+                    Log.d("Result Json:",  gson.toJson(result.data))
+                    if (result.data!!.data!=null){
+                        bindViewOrderTerbaru(result.data.data)
+                    }
+                }
+                Result.Status.ERROR -> {
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                }
+                Result.Status.LOADING -> TODO()
             }
-            .create()
-            .show()
+        }
+    }
 
+    private fun subscribeProfile(){
+        viewModel.resultProfile.observe(viewLifecycleOwner){result->
+            when(result.status){
+                Result.Status.SUCCESS->{
+                    if (result.data!!.data!=null){
+                        bindViewProfile(result.data.data)
+                    }
+                }
+                Result.Status.ERROR -> {
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                }
+                Result.Status.LOADING -> TODO()
+            }
+        }
+    }
+
+    private fun bindViewOrderTerbaru(response: OrderResponse){
+        binding.apply {
+            viewModel.selectedOrderId = response.order_id
+            layoutEmptyPesanan.visibility = View.GONE
+            layoutPesanan.visibility = View.VISIBLE
+
+            tvOutputNoPesanan.text = response.order.id.toString()
+            tvOutputLokasiPengambilan.text = response.order.asal_alamat
+            tvOutputLokasiPengiriman.text = response.order.order_detail_rutes[response.order.order_detail_rutes.lastIndex].alamat
+            tvOutputRuteTambahan.text = ""
+            when (response.order.jenis_perjalanan){
+                "1x jalan" ->{
+                    binding.rbPengirimanSekali.isChecked
+                }
+                else->{
+                    binding.rbPengirimanPp.isChecked
+                }
+            }
+            tvOutputBeratVolumeBarang.text = response.order.estimasi_berat.substringBefore(" ")
+            tvOutputJumlahTruck.text = response.order.jumlah_truk
+            tvOutputJenisTruck.text = " "
+            tvOutputNomorKontainer.text = response.order.container_id.toString()
+            tvOutputNamaKapal.text = response.order.nama_kapal
+            tvOutputKebutuhanTambahan.text = " "
+            tvOutputTanggal.text = response.order.pengiriman_tanggal
+            tvOutputWaktu.text = response.order.pengiriman_waktu
+            var barang = ""
+            for(i in 0..response.order.order_detail_barangs.size-1){
+                barang += if (i == response.order.order_detail_barangs.size-1)
+                    "${response.order.order_detail_barangs[i].deskripsi}"
+                else
+                    "${response.order.order_detail_barangs[i].deskripsi},"
+            }
+            tvOutputDeskripsiBarang.text = barang
+            tvOutputNomorPengurus.text = response.order.no_telepon_pengurus
+        }
+    }
+
+    private fun bindViewProfile(response: ProfileResponse){
+        binding.apply {
+            tvOutputNamaDriver.text = response.name
+            tvOutputNopol.text = response.driver_truks.no_polisi
+        }
     }
 }

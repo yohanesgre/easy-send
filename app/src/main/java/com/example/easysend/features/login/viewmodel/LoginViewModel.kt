@@ -8,7 +8,7 @@ import com.example.easysend.di.UserCache
 import com.example.easysend.features.login.data.repo.LoginRepository
 import com.example.easysend.network.api.Result
 import com.example.easysend.network.api.ResultResponse
-import com.example.easysend.network.response.LoginResponse
+import com.example.easysend.network.response.login.LoginResponse
 import javax.inject.Inject
 
 
@@ -18,7 +18,7 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     val inputLogin = MutableLiveData<InputLogin>()
 
-    val result: LiveData<Result<ResultResponse<LoginResponse>>> = switchMap(inputLogin){input->
+    val result: LiveData<Result<ResultResponse<LoginResponse>>> = switchMap(inputLogin){ input->
         if (input.noHP.isNotEmpty()){
             inputLogin.value.let {
                 repository.getLoginResult(input.noHP, input.password)

@@ -86,7 +86,7 @@ class DetailOrderDoneActivity : AppCompatActivity(), Injectable{
     }
 
     private fun initAdapter() {
-        timelineAdapter = TimelineAdapter(listItemTimeline, tlAttributes)
+        timelineAdapter = TimelineAdapter(tlAttributes)
         binding.timeline.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@DetailOrderDoneActivity, RecyclerView.VERTICAL, false)
             adapter = timelineAdapter

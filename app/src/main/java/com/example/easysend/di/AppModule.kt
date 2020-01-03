@@ -2,6 +2,9 @@ package com.example.easysend.di
 
 import android.app.Application
 import android.content.Context
+import com.example.easysend.features.delivery.data.datasource.OrderDetailRemoteDataSource
+import com.example.easysend.features.home.data.datasource.OrderRemoteDataSource
+import com.example.easysend.features.home.data.datasource.ProfileRemoteDataSource
 import com.example.easysend.features.login.data.datasource.LoginRemoteDataSource
 import com.example.easysend.network.api.AuthInterceptor
 import com.example.easysend.network.api.AuthRemoteDataSource
@@ -48,6 +51,27 @@ class AppModule {
     @Provides
     fun provideLoginRemoteDataSource(easySendService: EasySendService) =
         LoginRemoteDataSource(
+            easySendService
+        )
+
+    @Singleton
+    @Provides
+    fun provideProfileRemoteDataSource(easySendService: EasySendService) =
+        ProfileRemoteDataSource(
+            easySendService
+        )
+
+    @Singleton
+    @Provides
+    fun provideOrderDetailRemoteDataSource(easySendService: EasySendService) =
+        OrderDetailRemoteDataSource(
+            easySendService
+        )
+
+    @Singleton
+    @Provides
+    fun provideOrderRemoteDataSource(easySendService: EasySendService) =
+        OrderRemoteDataSource(
             easySendService
         )
 

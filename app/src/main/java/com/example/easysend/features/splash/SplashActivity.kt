@@ -14,6 +14,7 @@ import com.example.easysend.di.injectViewModel
 import com.example.easysend.features.MainActivity
 import com.example.easysend.features.onboarding.OnboardingActivity
 import com.example.easysend.features.onboarding.PilihAkunActivity
+import com.example.easysend.network.api.Result
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(), Injectable {
@@ -31,20 +32,38 @@ class SplashActivity : AppCompatActivity(), Injectable {
                 R.layout.activity_splash
             )
         Handler().postDelayed({
-            viewModel.authStatus.observe(this){
-                if (it){
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                }else{
-                    if (viewModel.userCache.isIsFirstTime()){
-                        startActivity(Intent(this, OnboardingActivity::class.java))
-                        finish()
-                    }else{
-                        startActivity(Intent(this, PilihAkunActivity::class.java))
-                        finish()
+            viewModel.authStatus.observe(this){result->
+                when(result.status){
+                    Result.Status.SUCCESS ->{
+                        if (result.data!!.data != null){
+                            val accessToken = result.data.data.access_token
+                            viewModel.userCache.putTokenAccess(accessToken)
+                            if (viewModel.userCache.getTokenAccess().isNotEmpty()){
+                                startActivity(Intent(this, MainActivity::class.java))
+                                finish()
+                            }else{
+                                if (viewModel.userCache.isIsFirstTime()){
+                                    startActivity(Intent(this, OnboardingActivity::class.java))
+                                    finish()
+                                }else{
+                                    startActivity(Intent(this, PilihAkunActivity::class.java))
+                                    finish()
+                                }
+                            }
+                        }
+                    }
+                    Result.Status.ERROR ->{
+                        if (viewModel.userCache.isIsFirstTime()){
+                            startActivity(Intent(this, OnboardingActivity::class.java))
+                            finish()
+                        }else{
+                            startActivity(Intent(this, PilihAkunActivity::class.java))
+                            finish()
+                        }
                     }
                 }
             }
         }, 3000L)
+
     }
 }

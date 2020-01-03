@@ -1,4 +1,4 @@
-package com.example.easysend.network.response
+package com.example.easysend.network.response.profile
 
 data class DriverTruckResponse(
     val id:Int,

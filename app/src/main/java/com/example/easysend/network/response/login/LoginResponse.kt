@@ -1,4 +1,4 @@
-package com.example.easysend.network.response
+package com.example.easysend.network.response.login
 
 data class LoginResponse(
     val user: UserResponse,

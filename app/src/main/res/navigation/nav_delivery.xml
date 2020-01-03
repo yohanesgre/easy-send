@@ -33,6 +33,10 @@
         <action
             android:id="@+id/action_deliveryDetilFragment_to_deliveryFragment"
             app:destination="@id/deliveryFragment" />
+        <argument
+            android:name="orderId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/uploadBiayaTambahanFragment"
